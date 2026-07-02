@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd /Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/mobile && mkdir -p components hooks utils)",
+      "Bash(git init *)",
+      "Bash(chmod +x /Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/.husky/pre-commit)",
+      "Bash(mkdir -p .vscode)",
+      "Bash(pnpm exec *)",
+      "Bash(pnpm lint *)",
+      "Bash(pnpm commitlint *)",
+      "Bash(pnpm run *)",
+      "Bash(node -e \"console.log\\(require.resolve\\('@puff/ui'\\)\\)\")",
+      "Bash(node test-import.mjs)",
+      "Bash(pnpm expo *)",
+      "Bash(rm -rf .expo node_modules/.cache)",
+      "Bash(curl -s http://localhost:8081/status)",
+      "Bash(lsof -ti:8081)",
+      "Bash(pnpm why *)",
+      "WebFetch(domain:metrobundler.dev)",
+      "WebFetch(domain:github.com)",
+      "Bash(rm -rf packages/shared/*/node_modules && pnpm install)",
+      "Bash(rm -rf node_modules packages/*/node_modules packages/*/*/node_modules apps/*/node_modules pnpm-lock.yaml && pnpm install)",
+      "Bash(npx create-expo-app@latest mobile-app --template blank)",
+      "Bash(npx expo *)"
+    ],
+    "additionalDirectories": [
+      "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/mobile",
+      "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo",
+      "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/packages/shared/*",
+      "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/packages/*"
+    ]
+  }
+}

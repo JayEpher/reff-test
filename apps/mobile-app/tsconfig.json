@@ -1,0 +1,17 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "noEmit": true,
+    "paths": {
+      "@puff/utils": ["../../packages/shared/utils/src"],
+      "@puff/types": ["../../packages/shared/types/src"],
+      "@puff/business-logic": ["../../packages/shared/business-logic/src"],
+      "@puff/api": ["../../packages/shared/api/src"],
+      "@puff/config": ["../../packages/shared/config/src"],
+      "@puff/ui": ["../../packages/shared/ui/src"]
+    }
+  },
+  "include": ["app/**/*.ts", "app/**/*.tsx"],
+  "references": []
+}

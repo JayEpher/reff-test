@@ -1,0 +1,30 @@
+{
+  "name": "@puff/activities",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "dev:checkin": "vite --mode checkin",
+    "dev:halloween": "vite --mode halloween",
+    "dev:mini-game": "vite --mode mini-game",
+    "dev:team": "vite --mode team"
+  },
+  "dependencies": {
+    "@puff/api": "workspace:*",
+    "@puff/types": "workspace:*",
+    "@puff/ui": "workspace:*",
+    "@puff/utils": "workspace:*",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.23.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.10"
+  }
+}
