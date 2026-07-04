@@ -1,5 +1,5 @@
 import React from 'react';
-import { useWebViewActivity, closeWebView } from '@/shared';
+import { useWebViewActivity } from '@/shared';
 import './CheckinActivity.css';
 
 export const CheckinActivity: React.FC = () => {

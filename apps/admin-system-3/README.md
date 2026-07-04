@@ -1,6 +1,6 @@
 # Admin System 3
 
-基于 Umi 3.5 和 React 17 的后台管理系统，集成 TanStack Query、Axios 和完整的认证功能。
+基于 Umi 3.5 和 React 17 的后台管理系统，集成 Axios 和完整的认证功能。
 
 ## 技术栈
 
@@ -8,7 +8,6 @@
 - **React 17.0.2** - UI 库
 - **Ant Design 4.24.15** - UI 组件库
 - **TypeScript 4.9.5** - 类型系统
-- **TanStack Query 5** - 数据请求和缓存
 - **Axios 1.18** - HTTP 客户端
 - **@puff/api** - 统一 API 封装（workspace 共享包）
 
@@ -35,11 +34,11 @@ pnpm build
 - ✅ 用户信息展示
 
 ### 📊 数据管理
-- ✅ TanStack Query 集成
-- ✅ 请求缓存和自动重试
-- ✅ 乐观更新
-- ✅ 分页支持
-- ✅ Loading 和 Error 状态处理
+- ✅ Axios 统一请求封装
+- ✅ 请求/响应拦截器
+- ✅ 自动 Token 注入
+- ✅ 错误统一处理
+- ✅ Loading 状态管理
 
 ### 🎨 UI 功能
 - ✅ 响应式布局
@@ -59,8 +58,7 @@ src/
 │   ├── Dashboard/        # 仪表盘
 │   └── Users/            # 用户管理
 ├── providers/            # Context Providers
-│   ├── AuthProvider.tsx  # 认证上下文
-│   └── QueryProvider.tsx # TanStack Query 配置
+│   └── AuthProvider.tsx  # 认证上下文
 ├── services/             # API 服务
 │   └── api.ts            # API 接口定义
 └── components/           # 公共组件
@@ -92,22 +90,35 @@ await apiClient.logout();
 - ✅ 统一错误处理
 - ✅ TypeScript 类型支持
 
-## TanStack Query 使用
+## 数据请求示例
+
+### 使用 useState + useEffect
 
 ```typescript
-// 查询数据
-const { data, isLoading } = useQuery({
-  queryKey: ['users'],
-  queryFn: () => userApi.getUsers(),
-});
+import { useState, useEffect } from 'react';
+import { dashboardApi } from '@/services/api';
 
-// 修改数据
-const mutation = useMutation({
-  mutationFn: userApi.deleteUser,
-  onSuccess: () => {
-    queryClient.invalidateQueries({ queryKey: ['users'] });
-  },
-});
+const Dashboard = () => {
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const result = await dashboardApi.getStats();
+        setData(result);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  return <div>{/* 使用 data 渲染 */}</div>;
+};
 ```
 
 ## 测试账号
@@ -124,7 +135,7 @@ const mutation = useMutation({
 | Umi 版本 | 4.3.36 | 3.5.41 |
 | React 版本 | 18.3.1 | 17.0.2 |
 | Ant Design | 5.16.0 | 4.24.15 |
-| 数据请求 | @ahooksjs/use-request | TanStack Query |
+| 数据请求 | @ahooksjs/use-request | Axios + useState |
 | HTTP 客户端 | Umi 内置 axios | @puff/api (axios) |
 | 认证系统 | ❌ | ✅ 完整实现 |
 
@@ -134,3 +145,35 @@ const mutation = useMutation({
 2. **环境变量**：在 `.env` 中配置 `API_BASE_URL`
 3. **Token 刷新**：可在 `@puff/api` 中扩展 refresh token 逻辑
 4. **权限控制**：可基于 `useAuth` Hook 扩展角色权限
+
+## 请求状态管理最佳实践
+
+由于项目使用原生 React State 管理请求，建议遵循以下模式：
+
+```typescript
+// 1. 列表页面 - 支持刷新
+const [loading, setLoading] = useState(false);
+const [data, setData] = useState([]);
+
+const fetchData = async () => {
+  try {
+    setLoading(true);
+    const result = await api.getList();
+    setData(result);
+  } catch (error) {
+    message.error('加载失败');
+  } finally {
+    setLoading(false);
+  }
+};
+
+useEffect(() => {
+  fetchData();
+}, [dependency]);
+
+// 2. 操作后刷新
+const handleDelete = async (id) => {
+  await api.delete(id);
+  await fetchData(); // 重新获取列表
+};
+```

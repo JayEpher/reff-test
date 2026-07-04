@@ -21,13 +21,32 @@
       "Bash(rm -rf packages/shared/*/node_modules && pnpm install)",
       "Bash(rm -rf node_modules packages/*/node_modules packages/*/*/node_modules apps/*/node_modules pnpm-lock.yaml && pnpm install)",
       "Bash(npx create-expo-app@latest mobile-app --template blank)",
-      "Bash(npx expo *)"
+      "Bash(npx expo *)",
+      "Bash(chmod +x /Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/mobile-app/fix-build.sh)",
+      "Bash(./gradlew clean *)",
+      "Bash(./gradlew assembleDebug)",
+      "Bash(pnpm list *)",
+      "Bash(timeout 15 pnpm dev)",
+      "Bash(pnpm dev *)",
+      "Bash(kill %1)",
+      "Bash(pnpm view *)",
+      "Bash(pnpm build *)",
+      "Bash(/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.bin/tsup --cwd packages/shared/config)",
+      "Bash(node /Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/tsup/dist/cli-default.js)",
+      "Bash(curl -s http://localhost:8000)",
+      "Bash(npx create-next-app@15.0.4 dapp --typescript --tailwind --eslint --app --no-src-dir --import-alias \"@/*\")",
+      "Bash(pnpm create *)",
+      "Bash(npx -y create-next-app@15.0.4 dapp-temp --ts --tailwind --eslint --app --no-src-dir --turbo --import-alias \"@/*\" --skip-install)",
+      "Bash(mkdir -p /Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3)",
+      "Bash(awk -F'/' '{print $\\(NF-3\\)}')",
+      "Bash(pnpm remove *)"
     ],
     "additionalDirectories": [
       "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/mobile",
       "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo",
       "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/packages/shared/*",
-      "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/packages/*"
+      "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/packages/*",
+      "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps"
     ]
   }
 }

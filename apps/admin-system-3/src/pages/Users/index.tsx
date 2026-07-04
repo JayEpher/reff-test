@@ -1,36 +1,64 @@
-import React, { useState } from 'react';
-import { Table, Button, Space, message, Modal, Spin } from 'antd';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import React, { useState, useEffect } from 'react';
+import { Table, Button, Space, message, Modal } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
-import { userApi } from '@/services/api';
+import { userApi, UserListResponse } from '@/services/api';
 import type { User } from '@puff/types';
 
 const Users: React.FC = () => {
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
-  const queryClient = useQueryClient();
-
-  const { data, isLoading } = useQuery({
-    queryKey: ['users', page, pageSize],
-    queryFn: () => userApi.getUsers({ page, pageSize }),
+  const [loading, setLoading] = useState(false);
+  const [deleteLoading, setDeleteLoading] = useState<string | null>(null);
+  const [data, setData] = useState<UserListResponse>({
+    list: [
+      {
+        id: '1',
+        username: '张三',
+        email: 'zhangsan@example.com',
+      },
+      {
+        id: '2',
+        username: '李四',
+        email: 'lisi@example.com',
+      },
+    ],
+    total: 2,
   });
 
-  const deleteMutation = useMutation({
-    mutationFn: userApi.deleteUser,
-    onSuccess: () => {
-      message.success('删除成功');
-      queryClient.invalidateQueries({ queryKey: ['users'] });
-    },
-    onError: () => {
-      message.error('删除失败');
-    },
-  });
+  const fetchUsers = async () => {
+    try {
+      setLoading(true);
+      const result = await userApi.getUsers({ page, pageSize });
+      setData(result);
+    } catch (error) {
+      console.error('Failed to fetch users:', error);
+      message.error('加载用户列表失败，使用模拟数据');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchUsers();
+  }, [page, pageSize]);
 
   const handleDelete = (record: User) => {
     Modal.confirm({
       title: '确认删除',
       content: `确定要删除用户 ${record.username} 吗？`,
-      onOk: () => deleteMutation.mutate(record.id),
+      onOk: async () => {
+        try {
+          setDeleteLoading(record.id);
+          await userApi.deleteUser(record.id);
+          message.success('删除成功');
+          await fetchUsers();
+        } catch (error) {
+          console.error('Failed to delete user:', error);
+          message.error('删除失败');
+        } finally {
+          setDeleteLoading(null);
+        }
+      },
     });
   };
 
@@ -59,7 +87,7 @@ const Users: React.FC = () => {
           <Button
             type="link"
             danger
-            loading={deleteMutation.isPending && deleteMutation.variables === record.id}
+            loading={deleteLoading === record.id}
             onClick={() => handleDelete(record)}
           >
             删除
@@ -69,22 +97,6 @@ const Users: React.FC = () => {
     },
   ];
 
-  const mockData: User[] = [
-    {
-      id: '1',
-      username: '张三',
-      email: 'zhangsan@example.com',
-    },
-    {
-      id: '2',
-      username: '李四',
-      email: 'lisi@example.com',
-    },
-  ];
-
-  const userList = data?.list || mockData;
-  const total = data?.total || mockData.length;
-
   return (
     <div>
       <h1>用户管理</h1>
@@ -93,13 +105,13 @@ const Users: React.FC = () => {
       </Button>
       <Table
         columns={columns}
-        dataSource={userList}
+        dataSource={data.list}
         rowKey="id"
-        loading={isLoading}
+        loading={loading}
         pagination={{
           current: page,
           pageSize,
-          total,
+          total: data.total,
           onChange: (newPage, newPageSize) => {
             setPage(newPage);
             setPageSize(newPageSize);

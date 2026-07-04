@@ -3,16 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "umi dev",
-    "build": "umi build",
+    "dev": "max dev",
+    "build": "max build",
     "start": "npm run dev"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.7.0",
     "@ant-design/pro-components": "^2.7.1",
     "@puff/api": "workspace:*",
+    "@puff/business-logic": "workspace:*",
+    "@puff/config": "workspace:*",
     "@puff/types": "workspace:*",
     "@puff/utils": "workspace:*",
-    "@umijs/max": "^4.1.0",
+    "@umijs/max": "^4.3.36",
     "antd": "^5.16.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"

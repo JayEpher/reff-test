@@ -17,7 +17,8 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@puff/types": "workspace:*"
+    "@puff/types": "workspace:*",
+    "axios": "^1.18.1"
   },
   "devDependencies": {
     "tsup": "^8.0.2",

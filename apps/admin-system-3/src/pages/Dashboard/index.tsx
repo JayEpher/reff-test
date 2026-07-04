@@ -1,16 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, Row, Col, Statistic, Spin, Alert } from 'antd';
 import { UserOutlined, ShoppingCartOutlined, DollarOutlined } from '@ant-design/icons';
-import { useQuery } from '@tanstack/react-query';
-import { dashboardApi } from '@/services/api';
+import { dashboardApi, DashboardStats } from '@/services/api';
 
 const Dashboard: React.FC = () => {
-  const { data, isLoading, error } = useQuery({
-    queryKey: ['dashboardStats'],
-    queryFn: dashboardApi.getStats,
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [stats, setStats] = useState<DashboardStats>({
+    totalUsers: 1128,
+    totalOrders: 93,
+    totalRevenue: 112893,
   });
 
-  if (isLoading) {
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await dashboardApi.getStats();
+        setStats(data);
+      } catch (err) {
+        setError('加载失败，使用模拟数据展示');
+        console.error('Failed to fetch dashboard stats:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchStats();
+  }, []);
+
+  if (loading) {
     return (
       <div style={{ textAlign: 'center', padding: 50 }}>
         <Spin size="large" />
@@ -18,22 +38,18 @@ const Dashboard: React.FC = () => {
     );
   }
 
-  if (error) {
-    return (
-      <Alert
-        message="加载失败"
-        description="无法获取仪表盘数据，使用模拟数据展示"
-        type="warning"
-        showIcon
-      />
-    );
-  }
-
-  const stats = data || { totalUsers: 1128, totalOrders: 93, totalRevenue: 112893 };
-
   return (
     <div>
       <h1>仪表盘</h1>
+      {error && (
+        <Alert
+          message="提示"
+          description={error}
+          type="warning"
+          showIcon
+          style={{ marginBottom: 16 }}
+        />
+      )}
       <Row gutter={16}>
         <Col span={8}>
           <Card>

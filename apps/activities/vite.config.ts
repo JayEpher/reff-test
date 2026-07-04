@@ -14,6 +14,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
+        main: resolve(__dirname, 'index.html'),
         checkin: resolve(__dirname, 'checkin/index.html'),
         halloween: resolve(__dirname, 'halloween/index.html'),
         'mini-game': resolve(__dirname, 'mini-game/index.html'),
