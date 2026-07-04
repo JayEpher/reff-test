@@ -2,6 +2,64 @@
 
 这是一个统一的活动页面项目，所有嵌入到 React Native WebView 的活动页面都在这里开发和维护。
 
+## ⚙️ 环境配置
+
+项目支持多环境配置（开发、测试、生产），用于区分接口地址和 Web3 链配置。
+
+### 环境变量文件
+
+- `.env.development` - 开发环境配置
+- `.env.test` - 测试环境配置
+- `.env.production` - 生产环境配置
+- `.env.local.example` - 本地配置模板
+
+### 配置本地环境
+
+```bash
+# 复制配置模板
+cp .env.local.example .env.local
+
+# 编辑 .env.local 填入你的配置
+# .env.local 会覆盖其他环境变量文件，且不会被提交到 git
+```
+
+### 环境变量说明
+
+```bash
+VITE_ENV=development                           # 环境名称
+VITE_API_BASE_URL=https://dev-api.example.com  # API 基础地址
+VITE_WEB3_CHAIN_ID=5                           # 链 ID（1=主网, 5=Goerli, 11155111=Sepolia）
+VITE_WEB3_RPC_URL=https://goerli.infura.io/v3/YOUR_KEY  # RPC 节点地址
+VITE_WEB3_CHAIN_NAME=Goerli                    # 链名称
+VITE_WEB3_EXPLORER_URL=https://goerli.etherscan.io  # 区块浏览器地址
+```
+
+### 在代码中使用
+
+```typescript
+import { config, isDevelopment, isProduction } from '@/config/env';
+
+// API 请求
+fetch(`${config.apiBaseUrl}/users/123`);
+
+// Web3 配置
+console.log(config.web3.chainId);  // 5
+console.log(config.web3.chainName); // "Goerli"
+
+// 环境判断
+if (isDevelopment) {
+  console.log('开发环境');
+}
+```
+
+### 构建不同环境
+
+```bash
+pnpm build:dev   # 使用开发环境变量构建
+pnpm build:test  # 使用测试环境变量构建
+pnpm build:prod  # 使用生产环境变量构建
+```
+
 ## 🚀 快速开始
 
 ### 开发模式（推荐）

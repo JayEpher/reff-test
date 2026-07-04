@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
+    "dev": "vite --mode development",
+    "build": "tsc && vite build --mode production",
+    "build:dev": "tsc && vite build --mode development",
+    "build:test": "tsc && vite build --mode test",
+    "build:prod": "tsc && vite build --mode production",
     "preview": "vite preview",
     "dev:checkin": "vite --mode checkin",
     "dev:halloween": "vite --mode halloween",
