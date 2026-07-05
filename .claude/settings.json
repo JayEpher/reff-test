@@ -40,7 +40,9 @@
       "Bash(mkdir -p /Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3)",
       "Bash(awk -F'/' '{print $\\(NF-3\\)}')",
       "Bash(pnpm remove *)",
-      "Bash(node -e \"console.log\\('Config check passed'\\)\")"
+      "Bash(node -e \"console.log\\('Config check passed'\\)\")",
+      "Bash(chmod +x /Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/docker.sh)",
+      "Bash(chmod +x /Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/build-docker.sh)"
     ],
     "additionalDirectories": [
       "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/mobile",

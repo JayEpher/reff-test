@@ -1,0 +1,83 @@
+version: '3.8'
+
+services:
+  # Activities 应用
+  activities:
+    build:
+      context: .
+      dockerfile: Dockerfile.universal
+      target: production-static
+      args:
+        NODE_VERSION: 20
+        APP_NAME: activities
+        BUILD_ENV: production
+    container_name: puff-activities
+    ports:
+      - "3001:80"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    networks:
+      - puff-network
+
+  # Admin System 1
+  admin-system-1:
+    build:
+      context: .
+      dockerfile: Dockerfile.universal
+      target: production-static
+      args:
+        NODE_VERSION: 20
+        APP_NAME: admin-system-1
+        BUILD_ENV: production
+    container_name: puff-admin-1
+    ports:
+      - "3002:80"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    networks:
+      - puff-network
+
+  # Admin System 3 (UmiJS 4 + React 18.3)
+  admin-system-3:
+    build:
+      context: .
+      dockerfile: Dockerfile.universal
+      target: production-static
+      args:
+        NODE_VERSION: 20
+        APP_NAME: admin-system-3
+        BUILD_ENV: production
+    container_name: puff-admin-3
+    ports:
+      - "3003:80"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    networks:
+      - puff-network
+
+  # DApp (Next.js)
+  dapp:
+    build:
+      context: .
+      dockerfile: Dockerfile.universal
+      target: production-nextjs
+      args:
+        NODE_VERSION: 20
+        APP_NAME: dapp
+        BUILD_ENV: production
+    container_name: puff-dapp
+    ports:
+      - "3004:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    restart: unless-stopped
+    networks:
+      - puff-network
+
+networks:
+  puff-network:
+    driver: bridge

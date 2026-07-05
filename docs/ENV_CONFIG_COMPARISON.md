@@ -1,20 +1,22 @@
-# 环境配置对比 - Activities vs Admin System 1
+# 环境配置对比 - 所有应用
 
 ## 概览
 
-两个应用都已完成环境变量配置，但由于使用不同的构建工具（Vite vs UmiJS），实现方式有所不同。
+所有应用都已完成环境变量配置，但由于使用不同的构建工具，实现方式有所不同。
 
 ## 对比表
 
-| 特性 | Activities (Vite) | Admin System 1 (UmiJS) |
-|------|-------------------|------------------------|
-| 构建工具 | Vite | UmiJS (Max) |
-| 环境变量前缀 | `VITE_` | 无要求 |
-| 访问方式 | `import.meta.env` | `process.env` |
-| 类型定义文件 | `src/vite-env.d.ts` | `src/typings.d.ts` |
-| 环境切换 | `--mode` flag | `UMI_ENV` 环境变量 |
-| 配置注入 | 自动 | 需在 `.umirc.ts` 的 `define` 中声明 |
-| 跨平台工具 | 不需要 | `cross-env` |
+| 特性 | Activities (Vite) | Admin System 1 (UmiJS 4) | Admin System 3 (UmiJS 4) | DApp (Next.js) |
+|------|-------------------|--------------------------|--------------------------|----------------|
+| 构建工具 | Vite | UmiJS Max | UmiJS Max | Next.js 15 |
+| React 版本 | 18.3 | 18.3 | 18.3 | 19 |
+| Node 版本 | 20 | 20 | 20 | 20 |
+| 环境变量前缀 | `VITE_` | 无要求 | 无要求 | `NEXT_PUBLIC_` |
+| 访问方式 | `import.meta.env` | `process.env` | `process.env` | `process.env` |
+| 类型定义文件 | `vite-env.d.ts` | `typings.d.ts` | `typings.d.ts` | `env.d.ts` |
+| 环境切换 | `--mode` | `UMI_ENV` | `UMI_ENV` | `NODE_ENV` |
+| 配置注入 | 自动 | `define` | `define` | 自动 |
+| 跨平台工具 | 不需要 | `cross-env` | `cross-env` | 不需要 |
 
 ## 文件结构对比
 
@@ -49,7 +51,26 @@ apps/admin-system-1/
 │       ├── index.ts          # 导出
 │       └── usage-example.ts  # 使用示例
 └── .umirc.ts                 # UmiJS 配置
-\`\`\`
+```
+
+### Admin System 3 (UmiJS 4 + React 18.3)
+```
+apps/admin-system-3/
+├── .env.development          # 开发环境
+├── .env.test                 # 测试环境
+├── .env.production           # 生产环境
+├── src/
+│   ├── typings.d.ts          # 类型定义
+│   ├── config/
+│   │   └── env.ts            # 配置模块
+│   ├── pages/                # 页面组件
+│   │   ├── Dashboard/        # 仪表板
+│   │   ├── Users/            # 用户管理
+│   │   ├── Content/          # 内容管理
+│   │   └── System/           # 系统设置
+│   └── app.tsx               # 运行时配置
+└── .umirc.ts                 # UmiJS 配置
+```
 
 ## 环境变量对比
 

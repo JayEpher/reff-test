@@ -1,87 +1,66 @@
-import React, { useEffect, useState } from 'react';
-import { Card, Row, Col, Statistic, Spin, Alert } from 'antd';
-import { UserOutlined, ShoppingCartOutlined, DollarOutlined } from '@ant-design/icons';
-import { dashboardApi, DashboardStats } from '@/services/api';
+import { Card, Col, Row, Statistic } from 'antd';
+import { ArrowUpOutlined, ArrowDownOutlined, UserOutlined, ShoppingCartOutlined } from '@ant-design/icons';
+import { PageContainer } from '@ant-design/pro-components';
+import config from '@/config/env';
 
-const Dashboard: React.FC = () => {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [stats, setStats] = useState<DashboardStats>({
-    totalUsers: 1128,
-    totalOrders: 93,
-    totalRevenue: 112893,
-  });
-
-  useEffect(() => {
-    const fetchStats = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        const data = await dashboardApi.getStats();
-        setStats(data);
-      } catch (err) {
-        setError('加载失败，使用模拟数据展示');
-        console.error('Failed to fetch dashboard stats:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchStats();
-  }, []);
-
-  if (loading) {
-    return (
-      <div style={{ textAlign: 'center', padding: 50 }}>
-        <Spin size="large" />
-      </div>
-    );
-  }
-
+export default function Dashboard() {
   return (
-    <div>
-      <h1>仪表盘</h1>
-      {error && (
-        <Alert
-          message="提示"
-          description={error}
-          type="warning"
-          showIcon
-          style={{ marginBottom: 16 }}
-        />
-      )}
+    <PageContainer
+      title="仪表板"
+      subTitle={`环境: ${config.env}`}
+    >
       <Row gutter={16}>
-        <Col span={8}>
+        <Col span={6}>
           <Card>
             <Statistic
               title="总用户数"
-              value={stats.totalUsers}
+              value={11280}
               prefix={<UserOutlined />}
+              valueStyle={{ color: '#3f8600' }}
+              suffix={<ArrowUpOutlined />}
             />
           </Card>
         </Col>
-        <Col span={8}>
+        <Col span={6}>
+          <Card>
+            <Statistic
+              title="活跃用户"
+              value={9300}
+              prefix={<UserOutlined />}
+              valueStyle={{ color: '#3f8600' }}
+            />
+          </Card>
+        </Col>
+        <Col span={6}>
           <Card>
             <Statistic
               title="订单数"
-              value={stats.totalOrders}
+              value={1280}
               prefix={<ShoppingCartOutlined />}
+              valueStyle={{ color: '#cf1322' }}
+              suffix={<ArrowDownOutlined />}
             />
           </Card>
         </Col>
-        <Col span={8}>
+        <Col span={6}>
           <Card>
             <Statistic
-              title="总收入"
-              value={stats.totalRevenue}
-              prefix={<DollarOutlined />}
+              title="收入"
+              value={128000}
+              prefix="¥"
               precision={2}
+              valueStyle={{ color: '#3f8600' }}
             />
           </Card>
         </Col>
       </Row>
-    </div>
-  );
-};
 
-export default Dashboard;
+      <Card title="Web3 配置信息" style={{ marginTop: 16 }}>
+        <p><strong>Chain ID:</strong> {config.web3.chainId}</p>
+        <p><strong>Chain Name:</strong> {config.web3.chainName}</p>
+        <p><strong>RPC URL:</strong> {config.web3.rpcUrl}</p>
+        <p><strong>Explorer:</strong> <a href={config.web3.explorerUrl} target="_blank" rel="noopener noreferrer">{config.web3.explorerUrl}</a></p>
+      </Card>
+    </PageContainer>
+  );
+}

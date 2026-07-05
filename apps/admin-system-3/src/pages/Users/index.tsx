@@ -1,125 +1,109 @@
-import React, { useState, useEffect } from 'react';
-import { Table, Button, Space, message, Modal } from 'antd';
-import type { ColumnsType } from 'antd/es/table';
-import { userApi, UserListResponse } from '@/services/api';
-import type { User } from '@puff/types';
+import { ProTable } from '@ant-design/pro-components';
+import { Button, Space } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
+import type { ProColumns } from '@ant-design/pro-components';
 
-const Users: React.FC = () => {
-  const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
-  const [loading, setLoading] = useState(false);
-  const [deleteLoading, setDeleteLoading] = useState<string | null>(null);
-  const [data, setData] = useState<UserListResponse>({
-    list: [
-      {
-        id: '1',
-        username: '张三',
-        email: 'zhangsan@example.com',
-      },
-      {
-        id: '2',
-        username: '李四',
-        email: 'lisi@example.com',
-      },
+interface UserType {
+  id: number;
+  name: string;
+  email: string;
+  role: string;
+  status: string;
+  createdAt: string;
+}
+
+const columns: ProColumns<UserType>[] = [
+  {
+    title: 'ID',
+    dataIndex: 'id',
+    width: 80,
+    search: false,
+  },
+  {
+    title: '用户名',
+    dataIndex: 'name',
+    copyable: true,
+  },
+  {
+    title: '邮箱',
+    dataIndex: 'email',
+    copyable: true,
+  },
+  {
+    title: '角色',
+    dataIndex: 'role',
+    valueEnum: {
+      admin: { text: '管理员', status: 'Success' },
+      user: { text: '普通用户', status: 'Default' },
+    },
+  },
+  {
+    title: '状态',
+    dataIndex: 'status',
+    valueEnum: {
+      active: { text: '活跃', status: 'Success' },
+      inactive: { text: '禁用', status: 'Error' },
+    },
+  },
+  {
+    title: '创建时间',
+    dataIndex: 'createdAt',
+    valueType: 'dateTime',
+    search: false,
+  },
+  {
+    title: '操作',
+    valueType: 'option',
+    render: () => [
+      <a key="edit">编辑</a>,
+      <a key="delete" style={{ color: 'red' }}>删除</a>,
     ],
-    total: 2,
-  });
+  },
+];
 
-  const fetchUsers = async () => {
-    try {
-      setLoading(true);
-      const result = await userApi.getUsers({ page, pageSize });
-      setData(result);
-    } catch (error) {
-      console.error('Failed to fetch users:', error);
-      message.error('加载用户列表失败，使用模拟数据');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchUsers();
-  }, [page, pageSize]);
-
-  const handleDelete = (record: User) => {
-    Modal.confirm({
-      title: '确认删除',
-      content: `确定要删除用户 ${record.username} 吗？`,
-      onOk: async () => {
-        try {
-          setDeleteLoading(record.id);
-          await userApi.deleteUser(record.id);
-          message.success('删除成功');
-          await fetchUsers();
-        } catch (error) {
-          console.error('Failed to delete user:', error);
-          message.error('删除失败');
-        } finally {
-          setDeleteLoading(null);
-        }
-      },
-    });
-  };
-
-  const columns: ColumnsType<User> = [
-    {
-      title: 'ID',
-      dataIndex: 'id',
-      key: 'id',
-    },
-    {
-      title: '用户名',
-      dataIndex: 'username',
-      key: 'username',
-    },
-    {
-      title: '邮箱',
-      dataIndex: 'email',
-      key: 'email',
-    },
-    {
-      title: '操作',
-      key: 'action',
-      render: (_, record) => (
-        <Space size="middle">
-          <Button type="link">编辑</Button>
-          <Button
-            type="link"
-            danger
-            loading={deleteLoading === record.id}
-            onClick={() => handleDelete(record)}
-          >
-            删除
-          </Button>
-        </Space>
-      ),
-    },
-  ];
-
+export default function Users() {
   return (
-    <div>
-      <h1>用户管理</h1>
-      <Button type="primary" style={{ marginBottom: 16 }}>
-        添加用户
-      </Button>
-      <Table
-        columns={columns}
-        dataSource={data.list}
-        rowKey="id"
-        loading={loading}
-        pagination={{
-          current: page,
-          pageSize,
-          total: data.total,
-          onChange: (newPage, newPageSize) => {
-            setPage(newPage);
-            setPageSize(newPageSize);
-          },
-        }}
-      />
-    </div>
+    <ProTable<UserType>
+      columns={columns}
+      request={async (params) => {
+        // 模拟数据
+        return {
+          data: [
+            {
+              id: 1,
+              name: 'Admin User',
+              email: 'admin@example.com',
+              role: 'admin',
+              status: 'active',
+              createdAt: '2024-01-01 10:00:00',
+            },
+            {
+              id: 2,
+              name: 'Test User',
+              email: 'test@example.com',
+              role: 'user',
+              status: 'active',
+              createdAt: '2024-01-02 11:00:00',
+            },
+          ],
+          success: true,
+          total: 2,
+        };
+      }}
+      rowKey="id"
+      search={{
+        labelWidth: 'auto',
+      }}
+      pagination={{
+        pageSize: 10,
+      }}
+      dateFormatter="string"
+      headerTitle="用户列表"
+      toolBarRender={() => [
+        <Button key="button" icon={<PlusOutlined />} type="primary">
+          新建用户
+        </Button>,
+      ]}
+    />
   );
-};
-
-export default Users;
+}
