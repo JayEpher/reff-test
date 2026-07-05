@@ -3,3 +3,12 @@ dist
 .umi-production
 node_modules
 .DS_Store
+
+# Environment variables
+.env.local
+.env.*.local
+
+# Environment variables
+.env.local
+.env.*.local
+

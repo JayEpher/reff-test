@@ -4,7 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:test": "NODE_ENV=test next dev",
+    "dev:prod": "NODE_ENV=production next dev",
     "build": "next build",
+    "build:dev": "NODE_ENV=development next build",
+    "build:test": "NODE_ENV=test next build",
+    "build:prod": "NODE_ENV=production next build",
     "start": "next start",
     "lint": "next lint"
   },

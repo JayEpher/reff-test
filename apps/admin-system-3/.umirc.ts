@@ -4,6 +4,13 @@ export default defineConfig({
   nodeModulesTransform: {
     type: 'none',
   },
+  define: {
+    'process.env.API_BASE_URL': process.env.API_BASE_URL,
+    'process.env.WEB3_CHAIN_ID': process.env.WEB3_CHAIN_ID,
+    'process.env.WEB3_RPC_URL': process.env.WEB3_RPC_URL,
+    'process.env.WEB3_CHAIN_NAME': process.env.WEB3_CHAIN_NAME,
+    'process.env.WEB3_EXPLORER_URL': process.env.WEB3_EXPLORER_URL,
+  },
   routes: [
     { path: '/login', component: '@/pages/Login', layout: false },
     {

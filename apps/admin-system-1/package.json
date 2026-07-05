@@ -3,8 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "max dev",
-    "build": "max build",
+    "dev": "cross-env UMI_ENV=development max dev",
+    "dev:test": "cross-env UMI_ENV=test max dev",
+    "dev:prod": "cross-env UMI_ENV=production max dev",
+    "build": "cross-env UMI_ENV=production max build",
+    "build:dev": "cross-env UMI_ENV=development max build",
+    "build:test": "cross-env UMI_ENV=test max build",
+    "build:prod": "cross-env UMI_ENV=production max build",
     "start": "npm run dev"
   },
   "dependencies": {
@@ -23,6 +28,7 @@
   "devDependencies": {
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.0",
+    "cross-env": "^7.0.3",
     "typescript": "^5.4.5"
   }
 }
