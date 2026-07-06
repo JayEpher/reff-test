@@ -208,9 +208,9 @@ pipeline {
 
                     // 使用 docker compose 部署
                     if (params.APP_TO_BUILD == 'all') {
-                        sh 'docker compose -f docker compose.yml -f docker compose.override.yml up -d'
+                        sh 'docker compose -f docker-compose.yml -f docker-compose.override.yml up -d'
                     } else {
-                        sh "docker compose -f docker compose.yml -f docker compose.override.yml up -d ${params.APP_TO_BUILD}"
+                        sh "docker compose -f docker-compose.yml -f docker-compose.override.yml up -d ${params.APP_TO_BUILD}"
                     }
 
                     echo '=========================================='
