@@ -180,7 +180,7 @@ pipeline {
                         ? ['activities', 'admin-system-1', 'admin-system-3', 'dapp']
                         : [params.APP_TO_BUILD]
 
-                    // 为每个应用生成 docker-compose 覆盖文件
+                    // 为每个应用生成 docker compose 覆盖文件
                     def composeOverride = "version: '3.8'\nservices:\n"
 
                     apps.each { appName ->
@@ -196,21 +196,21 @@ pipeline {
                     }
 
                     // 写入临时覆盖文件
-                    writeFile file: 'docker-compose.override.yml', text: composeOverride
+                    writeFile file: 'docker compose.override.yml', text: composeOverride
 
-                    echo '生成的 docker-compose.override.yml:'
-                    sh 'cat docker-compose.override.yml'
+                    echo '生成的 docker compose.override.yml:'
+                    sh 'cat docker compose.override.yml'
 
                     // 登录 Harbor（部署服务器也需要登录）
                     sh """
                         echo \${HARBOR_CREDENTIALS_PSW} | docker login ${HARBOR_URL} -u \${HARBOR_CREDENTIALS_USR} --password-stdin
                     """
 
-                    // 使用 docker-compose 部署
+                    // 使用 docker compose 部署
                     if (params.APP_TO_BUILD == 'all') {
-                        sh 'docker compose -f docker-compose.yml -f docker-compose.override.yml up -d'
+                        sh 'docker compose -f docker compose.yml -f docker compose.override.yml up -d'
                     } else {
-                        sh "docker compose -f docker-compose.yml -f docker-compose.override.yml up -d ${params.APP_TO_BUILD}"
+                        sh "docker compose -f docker compose.yml -f docker compose.override.yml up -d ${params.APP_TO_BUILD}"
                     }
 
                     echo '=========================================='
@@ -323,7 +323,7 @@ pipeline {
                 sh "docker logout ${HARBOR_URL} || true"
 
                 // 删除临时覆盖文件
-                sh 'rm -f docker-compose.override.yml || true'
+                sh 'rm -f docker compose.override.yml || true'
 
                 echo '🔚 Pipeline 执行结束'
             }
