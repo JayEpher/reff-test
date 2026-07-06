@@ -63,8 +63,16 @@ ENV APP_NAME=${APP_NAME}
 # 复制构建产物
 COPY --from=builder /app/apps/${APP_NAME}/dist /usr/share/nginx/html
 
-# 创建默认 nginx 配置
-RUN cat > /etc/nginx/conf.d/default.conf <<'EOF'
+# 复制 docker 目录（用于获取自定义 nginx 配置）
+COPY --from=builder /app/docker /tmp/docker
+
+# 设置 nginx 配置：优先使用自定义配置，否则使用默认配置
+RUN if [ -f /tmp/docker/nginx/${APP_NAME}.conf ]; then \
+      echo "✅ Using custom nginx config for ${APP_NAME}"; \
+      cp /tmp/docker/nginx/${APP_NAME}.conf /etc/nginx/conf.d/default.conf; \
+    else \
+      echo "ℹ️  Using default nginx config"; \
+      cat > /etc/nginx/conf.d/default.conf <<'EOF'
 server {
     listen 80;
     root /usr/share/nginx/html;
@@ -75,9 +83,8 @@ server {
     }
 }
 EOF
-
-# 如果有自定义配置，覆盖默认配置（可选）
-COPY --from=builder /app/docker/nginx/${APP_NAME}.conf /etc/nginx/conf.d/default.conf 2>/dev/null || true
+    fi && \
+    rm -rf /tmp/docker
 
 EXPOSE 80
 
