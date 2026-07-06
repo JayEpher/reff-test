@@ -47,8 +47,9 @@ ARG BUILD_ENV=production
 ENV NODE_ENV=${BUILD_ENV}
 ENV UMI_ENV=${BUILD_ENV}
 
-# 构建应用
-RUN pnpm --filter "@puff/${APP_NAME}" build
+# 构建应用及其所有依赖（pnpm 会自动按依赖顺序构建）
+# --filter 会自动包含所有 workspace 依赖
+RUN pnpm --filter "@puff/${APP_NAME}..." build
 
 # ================================
 # 阶段 3: 静态应用生产环境 (Nginx)
