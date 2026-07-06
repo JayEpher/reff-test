@@ -50,8 +50,9 @@ ARG BUILD_ENV=production
 ENV NODE_ENV=${BUILD_ENV}
 ENV UMI_ENV=${BUILD_ENV}
 
-# 构建应用及其所有依赖
-RUN pnpm --filter "@puff/${APP_NAME}..." build
+# 构建应用及其所有依赖（使用 Turbo 缓存）
+# Turbo 会自动处理依赖顺序和并行构建
+RUN pnpm turbo run build --filter="@puff/${APP_NAME}..."
 
 # ================================
 # 阶段 3: 静态应用生产环境 (Nginx)
