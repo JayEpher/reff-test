@@ -206,11 +206,11 @@ pipeline {
                         echo \${HARBOR_CREDENTIALS_PSW} | docker login ${HARBOR_URL} -u \${HARBOR_CREDENTIALS_USR} --password-stdin
                     """
 
-                    // 使用 docker-compose 部署
+                    // 使用 docker compose 部署（v2）
                     if (params.APP_TO_BUILD == 'all') {
-                        sh 'docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d'
+                        sh 'docker compose -f docker-compose.yml -f docker-compose.override.yml up -d'
                     } else {
-                        sh "docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d ${params.APP_TO_BUILD}"
+                        sh "docker compose -f docker-compose.yml -f docker-compose.override.yml up -d ${params.APP_TO_BUILD}"
                     }
 
                     echo '=========================================='
