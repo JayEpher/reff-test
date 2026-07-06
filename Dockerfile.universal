@@ -4,8 +4,8 @@
 ARG NODE_VERSION=20
 FROM node:${NODE_VERSION}-alpine AS base
 
-# 安装 pnpm
-RUN npm install -g pnpm@8
+# 安装 pnpm（使用 corepack，Node 16+ 自带）
+RUN corepack enable && corepack prepare pnpm@8.15.1 --activate
 
 WORKDIR /app
 
@@ -17,13 +17,18 @@ FROM base AS dependencies
 ARG APP_NAME
 ENV APP_NAME=${APP_NAME}
 
-# 复制根目录配置文件
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml* ./
-COPY .npmrc* ./
+# 复制 workspace 配置文件
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY .npmrc ./
 
-# 复制所有 package.json
-COPY apps/${APP_NAME}/package.json ./apps/${APP_NAME}/
-COPY packages/*/package.json ./packages/*/
+# 复制所有 package.json 文件（分层复制以利用 Docker 缓存）
+# 方法：先复制整个目录结构，然后删除非 package.json 文件
+COPY apps/${APP_NAME}/package.json ./apps/${APP_NAME}/package.json
+COPY packages ./packages
+
+# 只保留 package.json 文件，删除其他文件以减小层大小
+RUN find ./packages -type f ! -name 'package.json' -delete && \
+    find ./packages -type d -empty -delete
 
 # 安装依赖
 RUN pnpm install --frozen-lockfile
