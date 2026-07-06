@@ -49,8 +49,9 @@ COPY . .
 ARG BUILD_ENV=production
 ENV NODE_ENV=${BUILD_ENV}
 
-# 构建应用及其所有依赖（使用 Turbo 缓存）
-# Turbo 会自动处理依赖顺序和并行构建
+# 构建应用及其所有依赖（使用 Turbo）
+# 注意：Docker 容器中 Turbo 缓存无法持久化（每次构建都是新环境）
+# 但 Turbo 仍提供依赖编排和并行构建能力
 RUN pnpm turbo run build --filter="@puff/${APP_NAME}..."
 
 # ================================
