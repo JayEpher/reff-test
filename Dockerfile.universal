@@ -51,6 +51,9 @@ ENV UMI_ENV=${BUILD_ENV}
 # --filter 会自动包含所有 workspace 依赖
 RUN pnpm --filter "@puff/${APP_NAME}..." build
 
+# 确保必要的目录存在（避免 COPY 失败）
+RUN mkdir -p /app/apps/${APP_NAME}/public
+
 # ================================
 # 阶段 3: Next.js 应用生产环境
 # 适用于: dapp
