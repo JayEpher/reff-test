@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  # 开发环境 - activities
+  activities-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.static
+      args:
+        APP_NAME: activities
+        NODE_VERSION: 20
+    volumes:
+      # 挂载源码（实时更新）
+      - ./apps/activities:/app/apps/activities
+      - ./packages:/app/packages
+
+      # 挂载 Turbo 缓存（加速重复构建）
+      - ./.turbo:/app/.turbo
+
+      # 排除 node_modules（使用容器内的）
+      - /app/node_modules
+      - /app/apps/activities/node_modules
+    ports:
+      - '3001:80'
+    command: pnpm dev --filter "@puff/activities"
+
+  # 开发环境 - dapp
+  dapp-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.nextjs
+      args:
+        APP_NAME: dapp
+        NODE_VERSION: 20
+    volumes:
+      - ./apps/dapp:/app/apps/dapp
+      - ./packages:/app/packages
+      - ./.turbo:/app/.turbo # ← Turbo 缓存挂载
+      - /app/node_modules
+      - /app/apps/dapp/node_modules
+    ports:
+      - '3004:3000'
+    command: pnpm dev --filter "@puff/dapp"
+
+# 注意：这只适用于开发环境（docker-compose）
+# CI/CD 环境请使用 Remote Cache（见 TURBO_REMOTE_CACHE_SETUP.md）

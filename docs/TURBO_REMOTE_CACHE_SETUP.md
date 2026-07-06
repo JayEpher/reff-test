@@ -2,14 +2,85 @@
 
 ## 方案对比
 
-| 方案            | 优点             | 缺点                 | 推荐场景 |
-| --------------- | ---------------- | -------------------- | -------- |
-| **Vercel 官方** | 零配置，全球 CDN | 需要外网，数据第三方 | 快速测试 |
-| **自建服务**    | 私有化，数据安全 | 需要运维，自己搭建   | 生产环境 |
+| 方案               | 优点                     | 缺点                    | 推荐场景 |
+| ------------------ | ------------------------ | ----------------------- | -------- |
+| **A. Volume 挂载** | 简单，无需额外服务       | 单机缓存，需要 BuildKit | 本地开发 |
+| **B. Vercel 官方** | 零配置，全球 CDN         | 需要外网，数据第三方    | 快速测试 |
+| **C. 自建服务**    | 私有化，数据安全，跨机器 | 需要运维，自己搭建      | 生产环境 |
 
 ---
 
-## 方案 A：使用 Vercel Remote Cache（最简单）
+## 方案 A：Docker Volume 挂载（适合本地开发）
+
+### 使用场景
+
+**✅ 适合：**
+
+- 本地开发环境（docker-compose）
+- 单机构建
+- 快速迭代测试
+
+**❌ 不适合：**
+
+- Jenkins CI/CD（需要 BuildKit）
+- 多机器共享缓存
+- 云端构建
+
+### 配置步骤（本地开发）
+
+#### 1. 创建开发环境 docker-compose
+
+已创建 `docker-compose.dev.yml`，使用方式：
+
+```bash
+# 启动开发环境
+docker-compose -f docker-compose.dev.yml up -d
+
+# 查看日志
+docker-compose -f docker-compose.dev.yml logs -f
+
+# 停止
+docker-compose -f docker-compose.dev.yml down
+```
+
+#### 2. 在 Jenkins 中使用（需要 BuildKit）
+
+**前置条件：** 先安装 BuildKit（参考 `jenkins-install-buildx.sh`）
+
+修改 Jenkinsfile：
+
+```groovy
+stage('Build Docker Images') {
+    steps {
+        script {
+            // 创建共享的 Turbo 缓存目录
+            sh 'mkdir -p .turbo'
+
+            apps.each { appName ->
+                def dockerfile = appName == 'dapp' ? 'Dockerfile.nextjs' : 'Dockerfile.static'
+
+                // 使用 BuildKit 挂载缓存
+                sh """
+                    DOCKER_BUILDKIT=1 docker build \\
+                        --build-arg APP_NAME=${appName} \\
+                        --build-arg NODE_VERSION=${nodeVersion} \\
+                        --build-arg BUILD_ENV=${DEPLOY_ENV} \\
+                        --mount=type=bind,source=\$(pwd)/.turbo,target=/app/.turbo \\
+                        -t ${imageName} \\
+                        -f ${dockerfile} \\
+                        .
+                """
+            }
+        }
+    }
+}
+```
+
+**注意：** 这种方式缓存仅在 Jenkins 服务器本地，无法跨机器共享。
+
+---
+
+## 方案 B：使用 Vercel Remote Cache（最简单）
 
 ### 1. 注册并获取 Token
 
