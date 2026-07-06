@@ -196,10 +196,10 @@ pipeline {
                     }
 
                     // 写入临时覆盖文件
-                    writeFile file: 'docker compose.override.yml', text: composeOverride
+                    writeFile file: 'docker-compose.override.yml', text: composeOverride
 
-                    echo '生成的 docker compose.override.yml:'
-                    sh 'cat docker compose.override.yml'
+                    echo '生成的 docker-compose.override.yml:'
+                    sh 'cat docker-compose.override.yml'
 
                     // 登录 Harbor（部署服务器也需要登录）
                     sh """
@@ -323,7 +323,7 @@ pipeline {
                 sh "docker logout ${HARBOR_URL} || true"
 
                 // 删除临时覆盖文件
-                sh 'rm -f docker compose.override.yml || true'
+                sh 'rm -f docker-compose.override.yml || true'
 
                 echo '🔚 Pipeline 执行结束'
             }
