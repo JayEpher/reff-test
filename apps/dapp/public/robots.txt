@@ -1,0 +1,41 @@
+# Robots.txt for PuffTown DApp
+# Learn more: https://www.robotstxt.org/robotstxt.html
+
+# Allow all search engines
+User-agent: *
+Allow: /
+
+# Disallow private/admin pages
+Disallow: /api/          # API routes
+Disallow: /_next/        # Next.js internal files
+Disallow: /admin/        # Admin panel (if exists)
+
+# Disallow user-specific pages (privacy)
+Disallow: /wallet/       # Wallet pages
+Disallow: /account/      # Account pages
+Disallow: /login         # Login page
+Disallow: /logout        # Logout page
+Disallow: /register      # Register page
+
+# Allow public static assets
+Allow: /images/
+Allow: /fonts/
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.svg$
+Allow: /*.webp$
+
+# Block AI training bots (optional - uncomment if needed)
+# User-agent: GPTBot
+# Disallow: /
+#
+# User-agent: CCBot
+# Disallow: /
+#
+# User-agent: Google-Extended
+# Disallow: /
+
+# Sitemap location
+Sitemap: https://pufftown.xyz/sitemap.xml
