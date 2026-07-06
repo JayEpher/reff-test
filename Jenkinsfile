@@ -2,15 +2,18 @@ pipeline {
     agent any
 
     environment {
-        // Docker 镜像仓库配置
-        DOCKER_REGISTRY = 'your-registry.com'
-        DOCKER_NAMESPACE = 'puff'
+        // Harbor 镜像仓库配置
+        HARBOR_URL = '107.173.87.162:8001'
+        HARBOR_PROJECT = 'puff'
 
-        // Docker 镜像标签
-        IMAGE_TAG = "${BUILD_NUMBER}"
+        // 根据分支名确定环境
+        DEPLOY_ENV = "${env.BRANCH_NAME == 'main' ? 'production' : (env.BRANCH_NAME == 'test' ? 'test' : 'development')}"
 
-        // Docker Hub 凭证
-        DOCKER_CREDENTIALS = credentials('docker-hub-credentials')
+        // Docker 镜像标签：分支名-构建号-时间戳
+        IMAGE_TAG = "${env.BRANCH_NAME}-${BUILD_NUMBER}-${new Date().format('yyyyMMdd-HHmmss')}"
+
+        // Harbor 凭证 (需要在 Jenkins 中配置 harbor-credentials)
+        HARBOR_CREDENTIALS = credentials('harbor-credentials')
     }
 
     parameters {
@@ -19,39 +22,40 @@ pipeline {
             choices: ['all', 'activities', 'admin-system-1', 'admin-system-3', 'dapp'],
             description: '选择要构建的应用'
         )
-        choice(
-            name: 'ENVIRONMENT',
-            choices: ['development', 'test', 'production'],
-            description: '选择部署环境'
-        )
         booleanParam(
-            name: 'PUSH_TO_REGISTRY',
+            name: 'SKIP_DEPLOY',
             defaultValue: false,
-            description: '是否推送镜像到仓库'
+            description: '仅构建镜像，跳过部署'
         )
     }
 
     stages {
+        stage('Environment Info') {
+            steps {
+                script {
+                    echo '=========================================='
+                    echo '🚀 开始 CI/CD 流水线'
+                    echo '=========================================='
+                    echo "分支: ${env.BRANCH_NAME}"
+                    echo "环境: ${DEPLOY_ENV}"
+                    echo "构建应用: ${params.APP_TO_BUILD}"
+                    echo "镜像标签: ${IMAGE_TAG}"
+                    echo "Harbor: ${HARBOR_URL}/${HARBOR_PROJECT}"
+                    echo '=========================================='
+                }
+            }
+        }
+
         stage('Checkout') {
             steps {
-                echo '=========================================='
-                echo '开始拉取代码...'
-                echo "构建应用: ${params.APP_TO_BUILD}"
-                echo "环境: ${params.ENVIRONMENT}"
-                echo '=========================================='
-
+                echo '📥 拉取代码...'
                 checkout scm
-
                 echo '✅ 代码拉取完成'
             }
         }
 
-        stage('Show Info') {
+        stage('Show System Info') {
             steps {
-                echo '=========================================='
-                echo '显示环境信息'
-                echo '=========================================='
-
                 sh 'docker --version'
                 sh 'pwd'
                 sh 'ls -la'
@@ -66,127 +70,196 @@ pipeline {
             steps {
                 script {
                     echo '=========================================='
-                    echo '开始构建 Docker 镜像...'
-                    echo '使用通用 Dockerfile (自动读取 Node 版本)'
+                    echo '🔨 开始构建 Docker 镜像...'
                     echo '=========================================='
 
-                    if (params.APP_TO_BUILD == 'all') {
-                        // 构建所有应用
-                        echo '构建所有应用...'
-                        sh 'docker-compose build'
-                    } else {
-                        // 构建单个应用
-                        echo "构建应用: ${params.APP_TO_BUILD}"
+                    // 定义要构建的应用列表
+                    def apps = params.APP_TO_BUILD == 'all'
+                        ? ['activities', 'admin-system-1', 'admin-system-3', 'dapp']
+                        : [params.APP_TO_BUILD]
+
+                    apps.each { appName ->
+                        echo "构建应用: ${appName}"
 
                         // 读取 Node 版本
                         def nodeVersion = sh(
-                            script: "cat apps/${params.APP_TO_BUILD}/.nvmrc 2>/dev/null || echo '20'",
+                            script: "cat apps/${appName}/.nvmrc 2>/dev/null || echo '20'",
                             returnStdout: true
                         ).trim()
 
-                        echo "从 .nvmrc 读取的 Node 版本: ${nodeVersion}"
+                        echo "Node 版本: ${nodeVersion}"
 
                         // 确定应用类型和目标阶段
-                        def appType = params.APP_TO_BUILD == 'dapp' ? 'nextjs' : 'static'
+                        def appType = appName == 'dapp' ? 'nextjs' : 'static'
                         def targetStage = appType == 'static' ? 'production-static' : 'production-nextjs'
 
-                        echo "应用类型: ${appType}"
-                        echo "目标阶段: ${targetStage}"
+                        // 定义镜像名称（包含完整 Harbor 路径）
+                        def imageName = "${HARBOR_URL}/${HARBOR_PROJECT}/${appName}:${IMAGE_TAG}"
+                        def imageLatest = "${HARBOR_URL}/${HARBOR_PROJECT}/${appName}:${env.BRANCH_NAME}-latest"
 
-                        def imageName = "${DOCKER_NAMESPACE}/${params.APP_TO_BUILD}:${IMAGE_TAG}"
-                        def imageLatest = "${DOCKER_NAMESPACE}/${params.APP_TO_BUILD}:latest"
+                        echo "镜像名称: ${imageName}"
+                        echo "最新标签: ${imageLatest}"
 
+                        // 构建镜像
                         sh """
                             docker build \
                                 --build-arg NODE_VERSION=${nodeVersion} \
-                                --build-arg APP_NAME=${params.APP_TO_BUILD} \
-                                --build-arg BUILD_ENV=${params.ENVIRONMENT} \
+                                --build-arg APP_NAME=${appName} \
+                                --build-arg BUILD_ENV=${DEPLOY_ENV} \
                                 --target ${targetStage} \
                                 -t ${imageName} \
                                 -t ${imageLatest} \
                                 -f Dockerfile.universal \
                                 .
                         """
+
+                        echo "✅ ${appName} 镜像构建完成"
                     }
 
-                    echo '✅ Docker 镜像构建完成'
+                    echo '=========================================='
+                    echo '✅ 所有镜像构建完成'
+                    echo '=========================================='
                 }
             }
         }
 
-        stage('Test Images') {
+        stage('Push to Harbor') {
             steps {
                 script {
                     echo '=========================================='
-                    echo '测试 Docker 镜像...'
+                    echo '📤 推送镜像到 Harbor...'
                     echo '=========================================='
 
-                    // 列出构建的镜像
-                    sh 'docker images | grep puff || true'
-
-                    echo '✅ 镜像测试完成'
-                }
-            }
-        }
-
-        stage('Push to Registry') {
-            when {
-                expression { params.PUSH_TO_REGISTRY == true }
-            }
-            steps {
-                script {
-                    echo '=========================================='
-                    echo '推送镜像到仓库...'
-                    echo '=========================================='
-
-                    // 登录 Docker Registry
+                    // 登录 Harbor
                     sh """
-                        echo \${DOCKER_CREDENTIALS_PSW} | docker login -u \${DOCKER_CREDENTIALS_USR} --password-stdin
+                        echo \${HARBOR_CREDENTIALS_PSW} | docker login ${HARBOR_URL} -u \${HARBOR_CREDENTIALS_USR} --password-stdin
                     """
 
-                    if (params.APP_TO_BUILD == 'all') {
-                        // 推送所有镜像
+                    // 定义要推送的应用列表
+                    def apps = params.APP_TO_BUILD == 'all'
+                        ? ['activities', 'admin-system-1', 'admin-system-3', 'dapp']
+                        : [params.APP_TO_BUILD]
+
+                    // 推送镜像
+                    apps.each { appName ->
+                        def imageName = "${HARBOR_URL}/${HARBOR_PROJECT}/${appName}:${IMAGE_TAG}"
+                        def imageLatest = "${HARBOR_URL}/${HARBOR_PROJECT}/${appName}:${env.BRANCH_NAME}-latest"
+
+                        echo "推送: ${appName}"
                         sh """
-                            docker push ${DOCKER_NAMESPACE}/activities:${IMAGE_TAG}
-                            docker push ${DOCKER_NAMESPACE}/activities:latest
-                            docker push ${DOCKER_NAMESPACE}/admin-system-1:${IMAGE_TAG}
-                            docker push ${DOCKER_NAMESPACE}/admin-system-1:latest
-                            docker push ${DOCKER_NAMESPACE}/admin-system-3:${IMAGE_TAG}
-                            docker push ${DOCKER_NAMESPACE}/admin-system-3:latest
-                            docker push ${DOCKER_NAMESPACE}/dapp:${IMAGE_TAG}
-                            docker push ${DOCKER_NAMESPACE}/dapp:latest
+                            docker push ${imageName}
+                            docker push ${imageLatest}
                         """
-                    } else {
-                        // 推送单个镜像
-                        sh """
-                            docker push ${DOCKER_NAMESPACE}/${params.APP_TO_BUILD}:${IMAGE_TAG}
-                            docker push ${DOCKER_NAMESPACE}/${params.APP_TO_BUILD}:latest
-                        """
+                        echo "✅ ${appName} 推送完成"
                     }
 
-                    echo '✅ 镜像推送完成'
+                    echo '=========================================='
+                    echo '✅ 所有镜像推送完成'
+                    echo '=========================================='
                 }
             }
         }
 
         stage('Deploy') {
             when {
-                expression { params.ENVIRONMENT == 'production' }
+                expression { params.SKIP_DEPLOY == false }
             }
             steps {
                 script {
                     echo '=========================================='
-                    echo '部署到生产环境...'
+                    echo "🚀 部署到 ${DEPLOY_ENV} 环境..."
                     echo '=========================================='
 
-                    input message: '确认部署到生产环境？', ok: '确认部署'
+                    // 生产环境需要人工确认
+                    if (env.BRANCH_NAME == 'main') {
+                        input message: '⚠️ 确认部署到生产环境？', ok: '确认部署'
+                    }
 
-                    echo '开始部署...'
+                    // 定义要部署的应用列表
+                    def apps = params.APP_TO_BUILD == 'all'
+                        ? ['activities', 'admin-system-1', 'admin-system-3', 'dapp']
+                        : [params.APP_TO_BUILD]
 
-                    // 示例：使用 docker-compose 部署
-                    // sh 'docker-compose -f docker-compose.prod.yml up -d'
+                    // 为每个应用生成 docker-compose 覆盖文件
+                    def composeOverride = "version: '3.8'\nservices:\n"
 
+                    apps.each { appName ->
+                        def imageName = "${HARBOR_URL}/${HARBOR_PROJECT}/${appName}:${IMAGE_TAG}"
+
+                        composeOverride += """
+  ${appName}:
+    image: ${imageName}
+    container_name: puff-${appName}-${DEPLOY_ENV}
+    environment:
+      - NODE_ENV=${DEPLOY_ENV}
+"""
+                    }
+
+                    // 写入临时覆盖文件
+                    writeFile file: 'docker-compose.override.yml', text: composeOverride
+
+                    echo '生成的 docker-compose.override.yml:'
+                    sh 'cat docker-compose.override.yml'
+
+                    // 登录 Harbor（部署服务器也需要登录）
+                    sh """
+                        echo \${HARBOR_CREDENTIALS_PSW} | docker login ${HARBOR_URL} -u \${HARBOR_CREDENTIALS_USR} --password-stdin
+                    """
+
+                    // 使用 docker-compose 部署
+                    if (params.APP_TO_BUILD == 'all') {
+                        sh 'docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d'
+                    } else {
+                        sh "docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d ${params.APP_TO_BUILD}"
+                    }
+
+                    echo '=========================================='
                     echo '✅ 部署完成'
+                    echo '=========================================='
+
+                    // 显示运行状态
+                    sh 'docker ps | grep puff'
+                }
+            }
+        }
+
+        stage('Health Check') {
+            when {
+                expression { params.SKIP_DEPLOY == false }
+            }
+            steps {
+                script {
+                    echo '=========================================='
+                    echo '🔍 健康检查...'
+                    echo '=========================================='
+
+                    // 等待容器启动
+                    sleep(time: 10, unit: 'SECONDS')
+
+                    // 检查容器状态
+                    def apps = params.APP_TO_BUILD == 'all'
+                        ? ['activities', 'admin-system-1', 'admin-system-3', 'dapp']
+                        : [params.APP_TO_BUILD]
+
+                    apps.each { appName ->
+                        def containerName = "puff-${appName}-${DEPLOY_ENV}"
+                        def status = sh(
+                            script: "docker inspect -f '{{.State.Status}}' ${containerName} 2>/dev/null || echo 'not found'",
+                            returnStdout: true
+                        ).trim()
+
+                        if (status == 'running') {
+                            echo "✅ ${appName}: 运行中"
+                        } else {
+                            echo "❌ ${appName}: 状态异常 (${status})"
+                            // 显示日志
+                            sh "docker logs --tail 50 ${containerName} || true"
+                        }
+                    }
+
+                    echo '=========================================='
+                    echo '✅ 健康检查完成'
+                    echo '=========================================='
                 }
             }
         }
@@ -194,26 +267,66 @@ pipeline {
 
     post {
         success {
-            echo '=========================================='
-            echo '✅ Pipeline 执行成功！'
-            echo "镜像标签: ${IMAGE_TAG}"
-            echo '使用通用 Dockerfile - 自动适配 Node 版本'
-            echo '=========================================='
+            script {
+                echo '=========================================='
+                echo '✅ Pipeline 执行成功！'
+                echo '=========================================='
+                echo "分支: ${env.BRANCH_NAME}"
+                echo "环境: ${DEPLOY_ENV}"
+                echo "镜像标签: ${IMAGE_TAG}"
+                echo "Harbor: ${HARBOR_URL}/${HARBOR_PROJECT}"
+                echo '=========================================='
+
+                // 输出访问地址
+                if (params.SKIP_DEPLOY == false) {
+                    echo '\n📋 应用访问地址:'
+                    if (params.APP_TO_BUILD == 'all' || params.APP_TO_BUILD == 'activities') {
+                        echo "activities: http://107.173.87.162:3001"
+                    }
+                    if (params.APP_TO_BUILD == 'all' || params.APP_TO_BUILD == 'admin-system-1') {
+                        echo "admin-system-1: http://107.173.87.162:3002"
+                    }
+                    if (params.APP_TO_BUILD == 'all' || params.APP_TO_BUILD == 'admin-system-3') {
+                        echo "admin-system-3: http://107.173.87.162:3003"
+                    }
+                    if (params.APP_TO_BUILD == 'all' || params.APP_TO_BUILD == 'dapp') {
+                        echo "dapp: http://107.173.87.162:3004"
+                    }
+                }
+            }
         }
+
         failure {
-            echo '=========================================='
-            echo '❌ Pipeline 执行失败！'
-            echo '=========================================='
+            script {
+                echo '=========================================='
+                echo '❌ Pipeline 执行失败！'
+                echo '=========================================='
+                echo "分支: ${env.BRANCH_NAME}"
+                echo "环境: ${DEPLOY_ENV}"
+                echo "失败阶段: ${env.STAGE_NAME}"
+
+                // 显示最近的容器日志
+                sh 'docker ps -a | grep puff | tail -5 || true'
+            }
         }
+
         always {
-            echo '=========================================='
-            echo '清理工作...'
-            echo '=========================================='
+            script {
+                echo '=========================================='
+                echo '🧹 清理工作...'
+                echo '=========================================='
 
-            // 清理悬空镜像
-            sh 'docker image prune -f || true'
+                // 清理悬空镜像（保留最近的镜像）
+                sh 'docker image prune -f || true'
 
-            echo '🔚 Pipeline 执行结束'
+                // 登出 Harbor
+                sh "docker logout ${HARBOR_URL} || true"
+
+                // 删除临时覆盖文件
+                sh 'rm -f docker-compose.override.yml || true'
+
+                echo '🔚 Pipeline 执行结束'
+            }
         }
     }
 }
