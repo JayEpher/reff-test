@@ -74,6 +74,7 @@ pipeline {
                 script {
                     echo '=========================================='
                     echo '🔨 开始构建 Docker 镜像...'
+                    echo "BuildKit 状态: ${env.DOCKER_BUILDKIT}"
                     echo '=========================================='
 
                     // 定义要构建的应用列表
