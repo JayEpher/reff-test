@@ -1,0 +1,81 @@
+# Dockerfile for Next.js applications
+# 适用于: dapp
+# 使用方法: docker build --build-arg APP_NAME=dapp -t puff/dapp -f Dockerfile.nextjs .
+
+ARG NODE_VERSION=20
+FROM node:${NODE_VERSION}-alpine AS base
+
+# 安装 pnpm（使用 corepack，Node 16+ 自带）
+RUN corepack enable && corepack prepare pnpm@9.15.9 --activate
+
+WORKDIR /app
+
+# ================================
+# 阶段 1: 安装依赖
+# ================================
+FROM base AS dependencies
+
+ARG APP_NAME
+ENV APP_NAME=${APP_NAME}
+
+# 复制 workspace 配置文件
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY .npmrc ./
+
+# 复制所有 package.json 文件
+COPY apps/${APP_NAME}/package.json ./apps/${APP_NAME}/package.json
+COPY packages ./packages
+
+# 只保留 package.json 文件，删除其他文件以减小层大小
+RUN find ./packages -type f ! -name 'package.json' -delete && \
+    find ./packages -type d -empty -delete
+
+# 安装依赖
+RUN pnpm install --frozen-lockfile
+
+# ================================
+# 阶段 2: 构建应用
+# ================================
+FROM dependencies AS builder
+
+# 复制源代码
+COPY . .
+
+# 设置环境变量
+ARG BUILD_ENV=production
+ENV NODE_ENV=${BUILD_ENV}
+
+# 构建应用及其所有依赖
+RUN pnpm --filter "@puff/${APP_NAME}..." build
+
+# ================================
+# 阶段 3: Next.js 生产环境
+# ================================
+FROM base AS production
+
+ARG APP_NAME
+ENV APP_NAME=${APP_NAME}
+
+WORKDIR /app
+
+# 复制根 node_modules
+COPY --from=dependencies /app/node_modules ./node_modules
+
+# 复制应用的 node_modules
+COPY --from=dependencies /app/apps/${APP_NAME}/node_modules ./apps/${APP_NAME}/node_modules
+
+# 复制应用的构建产物和配置文件
+COPY --from=builder /app/apps/${APP_NAME}/.next ./apps/${APP_NAME}/.next
+COPY --from=builder /app/apps/${APP_NAME}/public ./apps/${APP_NAME}/public
+COPY --from=builder /app/apps/${APP_NAME}/package.json ./apps/${APP_NAME}/
+COPY --from=builder /app/apps/${APP_NAME}/next.config.* ./apps/${APP_NAME}/
+
+# 设置环境变量
+ENV NODE_ENV=production
+ENV PORT=3000
+
+WORKDIR /app/apps/${APP_NAME}
+
+EXPOSE 3000
+
+CMD ["npm", "start"]

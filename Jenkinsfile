@@ -89,14 +89,14 @@ pipeline {
 
                         echo "Node 版本: ${nodeVersion}"
 
-                        // 确定应用类型和目标阶段
-                        def appType = appName == 'dapp' ? 'nextjs' : 'static'
-                        def targetStage = appType == 'static' ? 'production-static' : 'production-nextjs'
+                        // 确定应用类型和 Dockerfile
+                        def dockerfile = appName == 'dapp' ? 'Dockerfile.nextjs' : 'Dockerfile.static'
 
                         // 定义镜像名称（包含完整 Harbor 路径）
                         def imageName = "${HARBOR_URL}/${HARBOR_PROJECT}/${appName}:${IMAGE_TAG}"
                         def imageLatest = "${HARBOR_URL}/${HARBOR_PROJECT}/${appName}:${env.BRANCH_NAME}-latest"
 
+                        echo "使用 Dockerfile: ${dockerfile}"
                         echo "镜像名称: ${imageName}"
                         echo "最新标签: ${imageLatest}"
 
@@ -106,10 +106,9 @@ pipeline {
                                 --build-arg NODE_VERSION=${nodeVersion} \
                                 --build-arg APP_NAME=${appName} \
                                 --build-arg BUILD_ENV=${DEPLOY_ENV} \
-                                --target ${targetStage} \
                                 -t ${imageName} \
                                 -t ${imageLatest} \
-                                -f Dockerfile.universal \
+                                -f ${dockerfile} \
                                 .
                         """
 
