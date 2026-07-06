@@ -52,7 +52,8 @@ ENV UMI_ENV=${BUILD_ENV}
 RUN pnpm --filter "@puff/${APP_NAME}..." build
 
 # 确保必要的目录存在（避免 COPY 失败）
-RUN mkdir -p /app/apps/${APP_NAME}/public
+RUN mkdir -p /app/apps/${APP_NAME}/public && \
+    mkdir -p /app/apps/${APP_NAME}/.next
 
 # ================================
 # 阶段 3: Next.js 应用生产环境
