@@ -14,6 +14,10 @@ pipeline {
 
         // Harbor 凭证 (需要在 Jenkins 中配置 harbor-credentials)
         HARBOR_CREDENTIALS = credentials('harbor-credentials')
+
+        // 启用 Docker BuildKit 以支持缓存
+        DOCKER_BUILDKIT = '1'
+        BUILDKIT_PROGRESS = 'plain'
     }
 
     parameters {
@@ -100,14 +104,20 @@ pipeline {
                         echo "镜像名称: ${imageName}"
                         echo "最新标签: ${imageLatest}"
 
-                        // 构建镜像
+                        // 定义缓存镜像标签
+                        def cacheTag = "${HARBOR_URL}/${HARBOR_PROJECT}/${appName}:${env.BRANCH_NAME}-cache"
+
+                        // 构建镜像（启用 BuildKit 缓存）
                         sh """
                             docker build \
                                 --build-arg NODE_VERSION=${nodeVersion} \
                                 --build-arg APP_NAME=${appName} \
                                 --build-arg BUILD_ENV=${DEPLOY_ENV} \
+                                --cache-from ${cacheTag} \
+                                --build-arg BUILDKIT_INLINE_CACHE=1 \
                                 -t ${imageName} \
                                 -t ${imageLatest} \
+                                -t ${cacheTag} \
                                 -f ${dockerfile} \
                                 .
                         """
@@ -143,11 +153,13 @@ pipeline {
                     apps.each { appName ->
                         def imageName = "${HARBOR_URL}/${HARBOR_PROJECT}/${appName}:${IMAGE_TAG}"
                         def imageLatest = "${HARBOR_URL}/${HARBOR_PROJECT}/${appName}:${env.BRANCH_NAME}-latest"
+                        def cacheTag = "${HARBOR_URL}/${HARBOR_PROJECT}/${appName}:${env.BRANCH_NAME}-cache"
 
                         echo "推送: ${appName}"
                         sh """
                             docker push ${imageName}
                             docker push ${imageLatest}
+                            docker push ${cacheTag}
                         """
                         echo "✅ ${appName} 推送完成"
                     }
