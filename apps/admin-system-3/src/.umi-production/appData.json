@@ -53,11 +53,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 6
+        "register": 8
       },
       "enableBy": "register",
       "type": "preset",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/index.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/index.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi",
       "key": "umi"
@@ -70,7 +70,7 @@
       },
       "enableBy": "register",
       "type": "preset",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+max@4.6.70_@babel+core@7.29.7_@types+node@22.20.0_@types+react-dom@18.3.7_@types+react_vpubfhl3fmg4g5sc2cxjldglwe/node_modules/@umijs/max/dist/preset.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+max@4.6.70_@babel+core@7.29.7_@types+node@22.20.0_@types+react-dom@18.3.7_@types+react_qeg7v23vp4746yb5ym2rcvtve4/node_modules/@umijs/max/dist/preset.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/max/dist/preset",
       "key": "preset"
@@ -83,11 +83,11 @@
             0
           ]
         },
-        "register": 2
+        "register": 3
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/registerMethods.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/registerMethods.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/registerMethods",
       "key": "registerMethods"
@@ -97,10 +97,10 @@
       "time": {
         "hooks": {
           "onStart": [
-            4
+            3
           ]
         },
-        "register": 2
+        "register": 3
       },
       "enableBy": "register",
       "type": "plugin",
@@ -117,11 +117,11 @@
             0
           ]
         },
-        "register": 1
+        "register": 2
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/404/404.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/404/404.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/404/404",
       "key": "404"
@@ -130,11 +130,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/aiDev/aiDev.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/aiDev/aiDev.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/aiDev/aiDev",
       "key": "aiDev"
@@ -144,14 +144,14 @@
       "time": {
         "hooks": {
           "modifyAppData": [
-            27
+            36
           ]
         },
-        "register": 29
+        "register": 21
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/appData/appData.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/appData/appData.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/appData/appData",
       "key": "appData"
@@ -164,7 +164,7 @@
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/appData/umiInfo.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/appData/umiInfo.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/appData/umiInfo",
       "key": "umiInfo"
@@ -174,17 +174,17 @@
       "time": {
         "hooks": {
           "onCheckConfig": [
-            1
+            0
           ],
           "onCheck": [
-            1
+            0
           ]
         },
         "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/check/check.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/check/check.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/check/check",
       "key": "check"
@@ -197,11 +197,11 @@
             0
           ]
         },
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/check/babel722.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/check/babel722.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/check/babel722",
       "key": "babel722"
@@ -214,7 +214,7 @@
       },
       "enableBy": "config",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/codeSplitting/codeSplitting.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/codeSplitting/codeSplitting.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/codeSplitting/codeSplitting",
       "key": "codeSplitting"
@@ -227,11 +227,11 @@
             0
           ]
         },
-        "register": 16
+        "register": 7
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/configPlugins/configPlugins.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/configPlugins/configPlugins.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/configPlugins/configPlugins",
       "key": "configPlugins"
@@ -1083,7 +1083,7 @@
       },
       "enableBy": "config",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/crossorigin/crossorigin.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/crossorigin/crossorigin.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/crossorigin/crossorigin",
       "key": "crossorigin"
@@ -1093,14 +1093,14 @@
       "time": {
         "hooks": {
           "onStart": [
-            1
+            0
           ]
         },
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/depsOnDemand/depsOnDemand.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/depsOnDemand/depsOnDemand.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/depsOnDemand/depsOnDemand",
       "key": "depsOnDemand"
@@ -1113,7 +1113,7 @@
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/devTool/devTool.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/devTool/devTool.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/devTool/devTool",
       "key": "devTool"
@@ -1122,11 +1122,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 61
+        "register": 58
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/esbuildHelperChecker/esbuildHelperChecker.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/esbuildHelperChecker/esbuildHelperChecker.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/esbuildHelperChecker/esbuildHelperChecker",
       "key": "esbuildHelperChecker"
@@ -1135,11 +1135,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 31
+        "register": 38
       },
       "enableBy": "config",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/esmi/esmi.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/esmi/esmi.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/esmi/esmi",
       "key": "esmi"
@@ -1148,11 +1148,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 10
+        "register": 13
       },
       "enableBy": "config",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/exportStatic/exportStatic.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/exportStatic/exportStatic.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/exportStatic/exportStatic",
       "key": "exportStatic"
@@ -1162,14 +1162,14 @@
       "time": {
         "hooks": {
           "modifyAppData": [
-            0
+            1
           ]
         },
         "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/favicons/favicons.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/favicons/favicons.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/favicons/favicons",
       "key": "favicons"
@@ -1182,7 +1182,7 @@
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/helmet/helmet.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/helmet/helmet.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/helmet/helmet",
       "key": "helmet"
@@ -1195,7 +1195,7 @@
       },
       "enableBy": "config",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/icons/icons.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/icons/icons.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/icons/icons",
       "key": "icons"
@@ -1204,10 +1204,10 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 27
+        "register": 34
       },
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/mock/mock.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/mock/mock.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/mock/mock",
       "key": "mock"
@@ -1220,7 +1220,7 @@
       },
       "enableBy": "config",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/mpa/mpa.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/mpa/mpa.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/mpa/mpa",
       "key": "mpa"
@@ -1232,7 +1232,7 @@
         "register": 1
       },
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/okam/okam.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/okam/okam.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/okam/okam",
       "key": "okam"
@@ -1245,7 +1245,7 @@
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/overrides/overrides.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/overrides/overrides.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/overrides/overrides",
       "key": "overrides"
@@ -1254,11 +1254,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "config",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/phantomDependency/phantomDependency.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/phantomDependency/phantomDependency.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/phantomDependency/phantomDependency",
       "key": "phantomDependency"
@@ -1268,13 +1268,13 @@
       "time": {
         "hooks": {
           "modifyConfig": [
-            2
+            1
           ]
         },
         "register": 1
       },
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/polyfill/polyfill.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/polyfill/polyfill.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/polyfill/polyfill",
       "key": "polyfill"
@@ -1283,11 +1283,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/polyfill/publicPathPolyfill.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/polyfill/publicPathPolyfill.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/polyfill/publicPathPolyfill",
       "key": "publicPathPolyfill"
@@ -1296,11 +1296,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/prepare/prepare.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/prepare/prepare.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/prepare/prepare",
       "key": "prepare"
@@ -1313,7 +1313,7 @@
       },
       "enableBy": "config",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/routePrefetch/routePrefetch.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/routePrefetch/routePrefetch.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/routePrefetch/routePrefetch",
       "key": "routePrefetch"
@@ -1326,7 +1326,7 @@
       },
       "enableBy": "config",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/stagewise/stagewise.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/stagewise/stagewise.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/stagewise/stagewise",
       "key": "stagewise"
@@ -1339,7 +1339,7 @@
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/terminal/terminal.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/terminal/terminal.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/terminal/terminal",
       "key": "terminal"
@@ -1352,7 +1352,7 @@
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/tmpFiles/tmpFiles.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/tmpFiles/tmpFiles.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/tmpFiles/tmpFiles",
       "key": "tmpFiles"
@@ -1365,7 +1365,7 @@
       },
       "enableBy": "config",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/clientLoader/clientLoader.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/clientLoader/clientLoader.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/clientLoader/clientLoader",
       "key": "clientLoader"
@@ -1377,7 +1377,7 @@
         "register": 0
       },
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/routeProps/routeProps.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/routeProps/routeProps.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/routeProps/routeProps",
       "key": "routeProps"
@@ -1386,11 +1386,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 3
+        "register": 2
       },
       "enableBy": "config",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/ssr/ssr.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/ssr/ssr.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/ssr/ssr",
       "key": "ssr"
@@ -1403,7 +1403,7 @@
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/tmpFiles/configTypes.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/tmpFiles/configTypes.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/tmpFiles/configTypes",
       "key": "configTypes"
@@ -1412,11 +1412,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 5
+        "register": 2
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/transform/transform.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/transform/transform.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/transform/transform",
       "key": "transform"
@@ -1425,11 +1425,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 4
       },
       "enableBy": "config",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/lowImport/lowImport.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/lowImport/lowImport.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/lowImport/lowImport",
       "key": "lowImport"
@@ -1438,11 +1438,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "config",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/vite/vite.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/vite/vite.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/vite/vite",
       "key": "vite"
@@ -1451,10 +1451,10 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 4
+        "register": 5
       },
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/apiRoute/apiRoute.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/apiRoute/apiRoute.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/apiRoute/apiRoute",
       "key": "apiRoute"
@@ -1463,11 +1463,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 15
+        "register": 17
       },
       "enableBy": "config",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/monorepo/redirect.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/monorepo/redirect.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/monorepo/redirect",
       "key": "monorepoRedirect"
@@ -1479,7 +1479,7 @@
         "register": 1
       },
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/test/test.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/test/test.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/test/test",
       "key": "test"
@@ -1491,7 +1491,7 @@
         "register": 1
       },
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/clickToComponent/clickToComponent.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/clickToComponent/clickToComponent.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/clickToComponent/clickToComponent",
       "key": "clickToComponent"
@@ -1500,11 +1500,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 607
+        "register": 991
       },
       "enableBy": "config",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/legacy/legacy.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/legacy/legacy.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/legacy/legacy",
       "key": "legacy"
@@ -1513,11 +1513,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       },
       "enableBy": "config",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/classPropertiesLoose/classPropertiesLoose.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/classPropertiesLoose/classPropertiesLoose.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/classPropertiesLoose/classPropertiesLoose",
       "key": "classPropertiesLoose"
@@ -1526,10 +1526,10 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 3
       },
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/webpack/webpack.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/webpack/webpack.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/webpack/webpack",
       "key": "preset-umi:webpack"
@@ -1546,7 +1546,7 @@
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/swc/swc.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/swc/swc.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/swc/swc",
       "key": "swc"
@@ -1555,10 +1555,10 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 4
+        "register": 9
       },
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/ui/ui.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/ui/ui.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/ui/ui",
       "key": "ui"
@@ -1567,11 +1567,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       },
       "enableBy": "config",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/mako/mako.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/mako/mako.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/mako/mako",
       "key": "mako"
@@ -1580,11 +1580,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "config",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/reactCompiler/forget.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/reactCompiler/forget.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/reactCompiler/forget",
       "key": "forget"
@@ -1593,10 +1593,10 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       },
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/reactCompiler/reactCompiler.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/reactCompiler/reactCompiler.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/reactCompiler/reactCompiler",
       "key": "reactCompiler"
@@ -1608,7 +1608,7 @@
         "register": 2
       },
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/utoopack/utoopack.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/utoopack/utoopack.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/utoopack/utoopack",
       "key": "utoopack"
@@ -1617,10 +1617,10 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 5
       },
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/hmrGuardian/hmrGuardian.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/hmrGuardian/hmrGuardian.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/hmrGuardian/hmrGuardian",
       "key": "hmrGuardian"
@@ -1629,10 +1629,10 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 21
+        "register": 65
       },
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/routePreloadOnLoad/routePreloadOnLoad.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/routePreloadOnLoad/routePreloadOnLoad.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/routePreloadOnLoad/routePreloadOnLoad",
       "key": "routePreloadOnLoad"
@@ -1641,11 +1641,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/features/bundler/bundler.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/features/bundler/bundler.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/features/bundler/bundler",
       "key": "preset-umi:bundler"
@@ -1654,11 +1654,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 4
+        "register": 6
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/commands/build.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/commands/build.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/commands/build",
       "key": "build"
@@ -1667,11 +1667,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 28
+        "register": 83
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/commands/config/config.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/commands/config/config.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/commands/config/config",
       "key": "config"
@@ -1680,10 +1680,10 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 28
+        "register": 130
       },
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/commands/dev/dev.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/commands/dev/dev.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/commands/dev/dev",
       "key": "dev"
@@ -1692,11 +1692,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/commands/help.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/commands/help.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/commands/help",
       "key": "help"
@@ -1705,11 +1705,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/commands/lint.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/commands/lint.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/commands/lint",
       "key": "lint"
@@ -1718,11 +1718,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/commands/setup.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/commands/setup.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/commands/setup",
       "key": "setup"
@@ -1731,11 +1731,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 2
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/commands/deadcode.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/commands/deadcode.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/commands/deadcode",
       "key": "deadcode"
@@ -1744,11 +1744,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/commands/version.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/commands/version.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/commands/version",
       "key": "version"
@@ -1757,11 +1757,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 5
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/commands/generators/page.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/commands/generators/page.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/commands/generators/page",
       "key": "generator:page"
@@ -1774,7 +1774,7 @@
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/commands/generators/prettier.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/commands/generators/prettier.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/commands/generators/prettier",
       "key": "generator:prettier"
@@ -1783,11 +1783,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 2
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/commands/generators/tsconfig.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/commands/generators/tsconfig.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/commands/generators/tsconfig",
       "key": "generator:tsconfig"
@@ -1800,7 +1800,7 @@
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/commands/generators/jest.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/commands/generators/jest.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/commands/generators/jest",
       "key": "generator:jest"
@@ -1809,11 +1809,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/commands/generators/tailwindcss.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/commands/generators/tailwindcss.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/commands/generators/tailwindcss",
       "key": "generator:tailwindcss"
@@ -1822,11 +1822,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 3
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/commands/generators/dva.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/commands/generators/dva.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/commands/generators/dva",
       "key": "generator:dva"
@@ -1839,7 +1839,7 @@
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/commands/generators/component.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/commands/generators/component.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/commands/generators/component",
       "key": "generator:component"
@@ -1852,7 +1852,7 @@
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/commands/generators/mock.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/commands/generators/mock.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/commands/generators/mock",
       "key": "generator:mock"
@@ -1865,7 +1865,7 @@
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/commands/generators/cypress.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/commands/generators/cypress.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/commands/generators/cypress",
       "key": "generator:cypress"
@@ -1874,11 +1874,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/commands/generators/api.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/commands/generators/api.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/commands/generators/api",
       "key": "generator:api"
@@ -1887,11 +1887,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/commands/generators/precommit.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/commands/generators/precommit.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/commands/generators/precommit",
       "key": "generator:precommit"
@@ -1904,7 +1904,7 @@
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/commands/plugin.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/commands/plugin.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/commands/plugin",
       "key": "command:plugin"
@@ -1913,11 +1913,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/commands/verify-commit.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/commands/verify-commit.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/commands/verify-commit",
       "key": "verifyCommit"
@@ -1926,11 +1926,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 3
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/commands/preview.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/commands/preview.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/commands/preview",
       "key": "preview"
@@ -1939,11 +1939,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_xjpoypggxljdwj5zfinjl7yaxq/node_modules/@umijs/preset-umi/dist/commands/mfsu/mfsu.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+preset-umi@4.6.70_@types+node@22.20.0_@types+react@18.3.31_lightningcss@1.32.0_rollup@_pm377z2nyb6shte6rsibivegqy/node_modules/@umijs/preset-umi/dist/commands/mfsu/mfsu.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/preset-umi/dist/commands/mfsu/mfsu",
       "key": "mfsu-cli"
@@ -1965,11 +1965,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 5
       },
       "enableBy": "config",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+plugins@4.6.70_@babel+core@7.29.7_@types+react-dom@18.3.7_@types+react@18.3.31__@types_eldipidtqcy2a6ykqwosijuuyu/node_modules/@umijs/plugins/dist/access.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+plugins@4.6.70_@babel+core@7.29.7_@types+react-dom@18.3.7_@types+react@18.3.31__@types_eaplhvjf5oldb4ox5pd53li3xi/node_modules/@umijs/plugins/dist/access.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/plugins/dist/access",
       "key": "access"
@@ -1983,7 +1983,7 @@
         "register": 0
       },
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+plugins@4.6.70_@babel+core@7.29.7_@types+react-dom@18.3.7_@types+react@18.3.31__@types_eldipidtqcy2a6ykqwosijuuyu/node_modules/@umijs/plugins/dist/analytics.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+plugins@4.6.70_@babel+core@7.29.7_@types+react-dom@18.3.7_@types+react@18.3.31__@types_eaplhvjf5oldb4ox5pd53li3xi/node_modules/@umijs/plugins/dist/analytics.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/plugins/dist/analytics",
       "key": "analytics"
@@ -1993,7 +1993,7 @@
       "time": {
         "hooks": {
           "modifyConfig": [
-            12
+            6
           ],
           "modifyAppData": [
             0
@@ -2002,10 +2002,10 @@
             0
           ]
         },
-        "register": 8
+        "register": 12
       },
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+plugins@4.6.70_@babel+core@7.29.7_@types+react-dom@18.3.7_@types+react@18.3.31__@types_eldipidtqcy2a6ykqwosijuuyu/node_modules/@umijs/plugins/dist/antd.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+plugins@4.6.70_@babel+core@7.29.7_@types+react-dom@18.3.7_@types+react@18.3.31__@types_eaplhvjf5oldb4ox5pd53li3xi/node_modules/@umijs/plugins/dist/antd.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/plugins/dist/antd",
       "key": "antd"
@@ -2014,11 +2014,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 5
+        "register": 7
       },
       "enableBy": "config",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+plugins@4.6.70_@babel+core@7.29.7_@types+react-dom@18.3.7_@types+react@18.3.31__@types_eldipidtqcy2a6ykqwosijuuyu/node_modules/@umijs/plugins/dist/dva.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+plugins@4.6.70_@babel+core@7.29.7_@types+react-dom@18.3.7_@types+react@18.3.31__@types_eaplhvjf5oldb4ox5pd53li3xi/node_modules/@umijs/plugins/dist/dva.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/plugins/dist/dva",
       "key": "dva"
@@ -2027,11 +2027,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "config",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+plugins@4.6.70_@babel+core@7.29.7_@types+react-dom@18.3.7_@types+react@18.3.31__@types_eldipidtqcy2a6ykqwosijuuyu/node_modules/@umijs/plugins/dist/initial-state.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+plugins@4.6.70_@babel+core@7.29.7_@types+react-dom@18.3.7_@types+react@18.3.31__@types_eaplhvjf5oldb4ox5pd53li3xi/node_modules/@umijs/plugins/dist/initial-state.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/plugins/dist/initial-state",
       "key": "initialState"
@@ -2049,14 +2049,14 @@
             0
           ],
           "modifyAppData": [
-            2
+            1
           ]
         },
-        "register": 4
+        "register": 6
       },
       "enableBy": "config",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+plugins@4.6.70_@babel+core@7.29.7_@types+react-dom@18.3.7_@types+react@18.3.31__@types_eldipidtqcy2a6ykqwosijuuyu/node_modules/@umijs/plugins/dist/layout.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+plugins@4.6.70_@babel+core@7.29.7_@types+react-dom@18.3.7_@types+react@18.3.31__@types_eaplhvjf5oldb4ox5pd53li3xi/node_modules/@umijs/plugins/dist/layout.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/plugins/dist/layout",
       "key": "layout"
@@ -2065,11 +2065,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 3
       },
       "enableBy": "config",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+plugins@4.6.70_@babel+core@7.29.7_@types+react-dom@18.3.7_@types+react@18.3.31__@types_eldipidtqcy2a6ykqwosijuuyu/node_modules/@umijs/plugins/dist/locale.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+plugins@4.6.70_@babel+core@7.29.7_@types+react-dom@18.3.7_@types+react@18.3.31__@types_eaplhvjf5oldb4ox5pd53li3xi/node_modules/@umijs/plugins/dist/locale.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/plugins/dist/locale",
       "key": "locale"
@@ -2082,7 +2082,7 @@
       },
       "enableBy": "config",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+plugins@4.6.70_@babel+core@7.29.7_@types+react-dom@18.3.7_@types+react@18.3.31__@types_eldipidtqcy2a6ykqwosijuuyu/node_modules/@umijs/plugins/dist/mf.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+plugins@4.6.70_@babel+core@7.29.7_@types+react-dom@18.3.7_@types+react@18.3.31__@types_eaplhvjf5oldb4ox5pd53li3xi/node_modules/@umijs/plugins/dist/mf.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/plugins/dist/mf",
       "key": "mf"
@@ -2095,7 +2095,7 @@
       },
       "enableBy": "config",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+plugins@4.6.70_@babel+core@7.29.7_@types+react-dom@18.3.7_@types+react@18.3.31__@types_eldipidtqcy2a6ykqwosijuuyu/node_modules/@umijs/plugins/dist/model.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+plugins@4.6.70_@babel+core@7.29.7_@types+react-dom@18.3.7_@types+react@18.3.31__@types_eaplhvjf5oldb4ox5pd53li3xi/node_modules/@umijs/plugins/dist/model.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/plugins/dist/model",
       "key": "model"
@@ -2104,11 +2104,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "config",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+plugins@4.6.70_@babel+core@7.29.7_@types+react-dom@18.3.7_@types+react@18.3.31__@types_eldipidtqcy2a6ykqwosijuuyu/node_modules/@umijs/plugins/dist/moment2dayjs.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+plugins@4.6.70_@babel+core@7.29.7_@types+react-dom@18.3.7_@types+react@18.3.31__@types_eaplhvjf5oldb4ox5pd53li3xi/node_modules/@umijs/plugins/dist/moment2dayjs.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/plugins/dist/moment2dayjs",
       "key": "moment2dayjs"
@@ -2121,7 +2121,7 @@
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+plugins@4.6.70_@babel+core@7.29.7_@types+react-dom@18.3.7_@types+react@18.3.31__@types_eldipidtqcy2a6ykqwosijuuyu/node_modules/@umijs/plugins/dist/qiankun.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+plugins@4.6.70_@babel+core@7.29.7_@types+react-dom@18.3.7_@types+react@18.3.31__@types_eaplhvjf5oldb4ox5pd53li3xi/node_modules/@umijs/plugins/dist/qiankun.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/plugins/dist/qiankun",
       "key": "qiankun"
@@ -2133,7 +2133,7 @@
         "register": 2
       },
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+plugins@4.6.70_@babel+core@7.29.7_@types+react-dom@18.3.7_@types+react@18.3.31__@types_eldipidtqcy2a6ykqwosijuuyu/node_modules/@umijs/plugins/dist/qiankun/master.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+plugins@4.6.70_@babel+core@7.29.7_@types+react-dom@18.3.7_@types+react@18.3.31__@types_eaplhvjf5oldb4ox5pd53li3xi/node_modules/@umijs/plugins/dist/qiankun/master.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/plugins/dist/qiankun/master",
       "key": "qiankun-master"
@@ -2142,10 +2142,10 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       },
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+plugins@4.6.70_@babel+core@7.29.7_@types+react-dom@18.3.7_@types+react@18.3.31__@types_eldipidtqcy2a6ykqwosijuuyu/node_modules/@umijs/plugins/dist/qiankun/slave.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+plugins@4.6.70_@babel+core@7.29.7_@types+react-dom@18.3.7_@types+react@18.3.31__@types_eaplhvjf5oldb4ox5pd53li3xi/node_modules/@umijs/plugins/dist/qiankun/slave.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/plugins/dist/qiankun/slave",
       "key": "qiankun-slave"
@@ -2158,7 +2158,7 @@
       },
       "enableBy": "config",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+plugins@4.6.70_@babel+core@7.29.7_@types+react-dom@18.3.7_@types+react@18.3.31__@types_eldipidtqcy2a6ykqwosijuuyu/node_modules/@umijs/plugins/dist/react-query.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+plugins@4.6.70_@babel+core@7.29.7_@types+react-dom@18.3.7_@types+react@18.3.31__@types_eaplhvjf5oldb4ox5pd53li3xi/node_modules/@umijs/plugins/dist/react-query.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/plugins/dist/react-query",
       "key": "reactQuery"
@@ -2167,11 +2167,11 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       },
       "enableBy": "config",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+plugins@4.6.70_@babel+core@7.29.7_@types+react-dom@18.3.7_@types+react@18.3.31__@types_eldipidtqcy2a6ykqwosijuuyu/node_modules/@umijs/plugins/dist/request.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+plugins@4.6.70_@babel+core@7.29.7_@types+react-dom@18.3.7_@types+react@18.3.31__@types_eaplhvjf5oldb4ox5pd53li3xi/node_modules/@umijs/plugins/dist/request.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/plugins/dist/request",
       "key": "request"
@@ -2184,7 +2184,7 @@
       },
       "enableBy": "config",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+plugins@4.6.70_@babel+core@7.29.7_@types+react-dom@18.3.7_@types+react@18.3.31__@types_eldipidtqcy2a6ykqwosijuuyu/node_modules/@umijs/plugins/dist/styled-components.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+plugins@4.6.70_@babel+core@7.29.7_@types+react-dom@18.3.7_@types+react@18.3.31__@types_eaplhvjf5oldb4ox5pd53li3xi/node_modules/@umijs/plugins/dist/styled-components.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/plugins/dist/styled-components",
       "key": "styledComponents"
@@ -2197,7 +2197,7 @@
       },
       "enableBy": "config",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+plugins@4.6.70_@babel+core@7.29.7_@types+react-dom@18.3.7_@types+react@18.3.31__@types_eldipidtqcy2a6ykqwosijuuyu/node_modules/@umijs/plugins/dist/tailwindcss.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+plugins@4.6.70_@babel+core@7.29.7_@types+react-dom@18.3.7_@types+react@18.3.31__@types_eaplhvjf5oldb4ox5pd53li3xi/node_modules/@umijs/plugins/dist/tailwindcss.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/plugins/dist/tailwindcss",
       "key": "tailwindcss"
@@ -2210,7 +2210,7 @@
       },
       "enableBy": "config",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+plugins@4.6.70_@babel+core@7.29.7_@types+react-dom@18.3.7_@types+react@18.3.31__@types_eldipidtqcy2a6ykqwosijuuyu/node_modules/@umijs/plugins/dist/valtio.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+plugins@4.6.70_@babel+core@7.29.7_@types+react-dom@18.3.7_@types+react@18.3.31__@types_eaplhvjf5oldb4ox5pd53li3xi/node_modules/@umijs/plugins/dist/valtio.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/plugins/dist/valtio",
       "key": "valtio"
@@ -2223,11 +2223,11 @@
             0
           ]
         },
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+max@4.6.70_@babel+core@7.29.7_@types+node@22.20.0_@types+react-dom@18.3.7_@types+react_vpubfhl3fmg4g5sc2cxjldglwe/node_modules/@umijs/max/dist/plugins/maxAlias.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+max@4.6.70_@babel+core@7.29.7_@types+node@22.20.0_@types+react-dom@18.3.7_@types+react_qeg7v23vp4746yb5ym2rcvtve4/node_modules/@umijs/max/dist/plugins/maxAlias.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/max/dist/plugins/maxAlias",
       "key": "maxAlias"
@@ -2244,7 +2244,7 @@
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+max@4.6.70_@babel+core@7.29.7_@types+node@22.20.0_@types+react-dom@18.3.7_@types+react_vpubfhl3fmg4g5sc2cxjldglwe/node_modules/@umijs/max/dist/plugins/maxAppData.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+max@4.6.70_@babel+core@7.29.7_@types+node@22.20.0_@types+react-dom@18.3.7_@types+react_qeg7v23vp4746yb5ym2rcvtve4/node_modules/@umijs/max/dist/plugins/maxAppData.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/max/dist/plugins/maxAppData",
       "key": "maxAppData"
@@ -2261,7 +2261,7 @@
       },
       "enableBy": "register",
       "type": "plugin",
-      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+max@4.6.70_@babel+core@7.29.7_@types+node@22.20.0_@types+react-dom@18.3.7_@types+react_vpubfhl3fmg4g5sc2cxjldglwe/node_modules/@umijs/max/dist/plugins/maxChecker.js",
+      "path": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/node_modules/.pnpm/@umijs+max@4.6.70_@babel+core@7.29.7_@types+node@22.20.0_@types+react-dom@18.3.7_@types+react_qeg7v23vp4746yb5ym2rcvtve4/node_modules/@umijs/max/dist/plugins/maxChecker.js",
       "cwd": "/Users/zhanghe/self/code/Front-end-Architecture/puff-monorepo/apps/admin-system-3",
       "id": "@umijs/max/dist/plugins/maxChecker",
       "key": "maxChecker"
@@ -2270,7 +2270,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",

@@ -1,0 +1,91 @@
+# Code Owners
+# 此文件定义了代码审查的所有者
+# 详细文档: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# 默认所有者 - 所有未明确指定的文件
+* @zhanghe
+
+# =====================================
+# Applications
+# =====================================
+
+# Activities 应用
+/apps/activities/ @zhanghe
+/apps/activities/src/ @zhanghe
+/apps/activities/package.json @zhanghe
+
+# Admin System 1
+/apps/admin-system-1/ @zhanghe
+/apps/admin-system-1/src/ @zhanghe
+/apps/admin-system-1/package.json @zhanghe
+
+# Admin System 3
+/apps/admin-system-3/ @zhanghe
+/apps/admin-system-3/src/ @zhanghe
+/apps/admin-system-3/package.json @zhanghe
+
+# DApp
+/apps/dapp/ @zhanghe
+/apps/dapp/src/ @zhanghe
+/apps/dapp/package.json @zhanghe
+
+# =====================================
+# Shared Packages (需要更严格的审查)
+# =====================================
+
+# 共享包目录 - 所有共享包默认需要审查
+/packages/ @zhanghe
+
+# 认证相关 - 安全关键
+/packages/shared-auth/ @zhanghe
+
+# 工具库
+/packages/shared-utils/ @zhanghe
+
+# UI 组件库
+/packages/shared-ui/ @zhanghe
+
+# =====================================
+# Infrastructure & DevOps
+# =====================================
+
+# Docker 配置
+/docker/ @zhanghe
+/Dockerfile* @zhanghe
+/docker-compose.yml @zhanghe
+/build-docker.sh @zhanghe
+
+# CI/CD
+/Jenkinsfile @zhanghe
+/.github/ @zhanghe
+
+# =====================================
+# Configuration Files (最高权限)
+# =====================================
+
+# Monorepo 配置
+/package.json @zhanghe
+/pnpm-workspace.yaml @zhanghe
+/pnpm-lock.yaml @zhanghe
+
+# TypeScript 配置
+/tsconfig.json @zhanghe
+/tsconfig*.json @zhanghe
+
+# 环境配置
+/.env* @zhanghe
+/apps/*/.env* @zhanghe
+
+# Git 配置
+/.gitignore @zhanghe
+/.gitattributes @zhanghe
+
+# =====================================
+# Documentation
+# =====================================
+
+# 文档目录
+/docs/ @zhanghe
+
+# README 文件
+*.md @zhanghe
