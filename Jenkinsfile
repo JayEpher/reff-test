@@ -46,16 +46,9 @@ pipeline {
             }
         }
 
-        stage('Checkout') {
-            steps {
-                echo '📥 拉取代码...'
-                checkout scm
-                echo '✅ 代码拉取完成'
-            }
-        }
-
         stage('Show System Info') {
             steps {
+                echo '📋 系统信息'
                 sh 'docker --version'
                 sh 'pwd'
                 sh 'ls -la'
