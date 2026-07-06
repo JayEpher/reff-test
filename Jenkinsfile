@@ -14,6 +14,9 @@ pipeline {
 
         // Harbor 凭证 (需要在 Jenkins 中配置 harbor-credentials)
         HARBOR_CREDENTIALS = credentials('harbor-credentials')
+
+        // 启用 Docker BuildKit
+        DOCKER_BUILDKIT = '1'
     }
 
     parameters {
@@ -100,12 +103,14 @@ pipeline {
                         echo "镜像名称: ${imageName}"
                         echo "最新标签: ${imageLatest}"
 
-                        // 构建镜像（使用传统 Docker 缓存）
+                        // 使用 BuildKit 构建（支持 Turbo 缓存持久化）
+                        // Docker 29.6.1+ 原生支持 BuildKit
                         sh """
                             docker build \
                                 --build-arg NODE_VERSION=${nodeVersion} \
                                 --build-arg APP_NAME=${appName} \
                                 --build-arg BUILD_ENV=${DEPLOY_ENV} \
+                                --build-arg BUILDKIT_INLINE_CACHE=1 \
                                 -t ${imageName} \
                                 -t ${imageLatest} \
                                 -f ${dockerfile} \
