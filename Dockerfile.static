@@ -22,13 +22,14 @@ ENV APP_NAME=${APP_NAME}
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY .npmrc ./
 
-# 复制所有 package.json 文件
+# 复制所有 package.json 文件（精确复制，避免不必要的缓存失效）
 COPY apps/${APP_NAME}/package.json ./apps/${APP_NAME}/package.json
-COPY packages ./packages
 
-# 只保留 package.json 文件，删除其他文件以减小层大小
-RUN find ./packages -type f ! -name 'package.json' -delete && \
-    find ./packages -type d -empty -delete
+# 复制 packages 目录下的所有 package.json（逐个复制以最大化缓存利用）
+COPY packages/shared/api/package.json ./packages/shared/api/package.json
+COPY packages/shared/types/package.json ./packages/shared/types/package.json
+COPY packages/shared/ui/package.json ./packages/shared/ui/package.json
+COPY packages/shared/utils/package.json ./packages/shared/utils/package.json
 
 # 安装依赖
 RUN pnpm install --frozen-lockfile
