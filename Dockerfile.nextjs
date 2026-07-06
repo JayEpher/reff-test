@@ -25,11 +25,14 @@ COPY .npmrc ./
 # 复制所有 package.json 文件（精确复制，避免不必要的缓存失效）
 COPY apps/${APP_NAME}/package.json ./apps/${APP_NAME}/package.json
 
-# 复制 packages 目录下的所有 package.json（逐个复制以最大化缓存利用）
+# 复制 packages 目录下的所有 package.json
 COPY packages/shared/api/package.json ./packages/shared/api/package.json
+COPY packages/shared/business-logic/package.json ./packages/shared/business-logic/package.json
+COPY packages/shared/config/package.json ./packages/shared/config/package.json
 COPY packages/shared/types/package.json ./packages/shared/types/package.json
 COPY packages/shared/ui/package.json ./packages/shared/ui/package.json
 COPY packages/shared/utils/package.json ./packages/shared/utils/package.json
+COPY packages/shared-auth/package.json ./packages/shared-auth/package.json
 
 # 安装依赖
 RUN pnpm install --frozen-lockfile
