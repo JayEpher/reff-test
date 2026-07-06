@@ -5,7 +5,8 @@ ARG NODE_VERSION=20
 FROM node:${NODE_VERSION}-alpine AS base
 
 # 安装 pnpm（使用 corepack，Node 16+ 自带）
-RUN corepack enable && corepack prepare pnpm@8.15.1 --activate
+# 注意：必须与本地开发环境的 pnpm 版本一致
+RUN corepack enable && corepack prepare pnpm@9.15.9 --activate
 
 WORKDIR /app
 
