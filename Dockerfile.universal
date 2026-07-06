@@ -52,7 +52,40 @@ ENV UMI_ENV=${BUILD_ENV}
 RUN pnpm --filter "@puff/${APP_NAME}..." build
 
 # ================================
-# 阶段 3: 静态应用生产环境 (Nginx)
+# 阶段 3: Next.js 应用生产环境
+# 适用于: dapp
+# ================================
+FROM base AS production-nextjs
+
+ARG APP_NAME
+ENV APP_NAME=${APP_NAME}
+
+WORKDIR /app
+
+# 复制根 node_modules
+COPY --from=dependencies /app/node_modules ./node_modules
+
+# 复制应用的 node_modules
+COPY --from=dependencies /app/apps/${APP_NAME}/node_modules ./apps/${APP_NAME}/node_modules
+
+# 复制应用的构建产物和配置文件
+COPY --from=builder /app/apps/${APP_NAME}/.next ./apps/${APP_NAME}/.next
+COPY --from=builder /app/apps/${APP_NAME}/public ./apps/${APP_NAME}/public
+COPY --from=builder /app/apps/${APP_NAME}/package.json ./apps/${APP_NAME}/
+COPY --from=builder /app/apps/${APP_NAME}/next.config.* ./apps/${APP_NAME}/
+
+# 设置环境变量
+ENV NODE_ENV=production
+ENV PORT=3000
+
+WORKDIR /app/apps/${APP_NAME}
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
+
+# ================================
+# 阶段 4: 静态应用生产环境 (Nginx)
 # 适用于: activities, admin-system-1, admin-system-3
 # ================================
 FROM nginx:alpine AS production-static
@@ -91,36 +124,3 @@ RUN if [ -f /tmp/docker/nginx/${APP_NAME}.conf ]; then \
 EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
-
-# ================================
-# 阶段 4: Next.js 应用生产环境
-# 适用于: dapp
-# ================================
-FROM base AS production-nextjs
-
-ARG APP_NAME
-ENV APP_NAME=${APP_NAME}
-
-WORKDIR /app
-
-# 复制根 node_modules
-COPY --from=dependencies /app/node_modules ./node_modules
-
-# 复制应用的 node_modules
-COPY --from=dependencies /app/apps/${APP_NAME}/node_modules ./apps/${APP_NAME}/node_modules
-
-# 复制应用的构建产物和配置文件
-COPY --from=builder /app/apps/${APP_NAME}/.next ./apps/${APP_NAME}/.next
-COPY --from=builder /app/apps/${APP_NAME}/public ./apps/${APP_NAME}/public
-COPY --from=builder /app/apps/${APP_NAME}/package.json ./apps/${APP_NAME}/
-COPY --from=builder /app/apps/${APP_NAME}/next.config.* ./apps/${APP_NAME}/
-
-# 设置环境变量
-ENV NODE_ENV=production
-ENV PORT=3000
-
-WORKDIR /app/apps/${APP_NAME}
-
-EXPOSE 3000
-
-CMD ["npm", "start"]
