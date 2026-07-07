@@ -9,10 +9,11 @@ pipeline {
         // 根据分支名确定环境
         DEPLOY_ENV = "${env.BRANCH_NAME == 'main' ? 'production' : (env.BRANCH_NAME == 'test' ? 'test' : 'development')}"
 
-        // Turbo Remote Cache 配置
+        // Turbo Remote Cache 配置（自建服务 + S3）
+        TURBO_API = 'http://107.173.87.162:3002'  // 自建服务地址
         TURBO_TOKEN = credentials('turbo-remote-cache-token')
-        TURBO_TEAM = 'puff-team'  // 可以自定义团队名
-        TURBO_TELEMETRY_DISABLED = '1'  // 禁用遥测
+        TURBO_TEAM = 'puff-team'
+        TURBO_TELEMETRY_DISABLED = '1'
 
         // Docker 镜像标签：分支名-构建号-时间戳
         IMAGE_TAG = "${env.BRANCH_NAME}-${BUILD_NUMBER}-${new Date().format('yyyyMMdd-HHmmss')}"
