@@ -9,6 +9,11 @@ pipeline {
         // 根据分支名确定环境
         DEPLOY_ENV = "${env.BRANCH_NAME == 'main' ? 'production' : (env.BRANCH_NAME == 'test' ? 'test' : 'development')}"
 
+        // Turbo Remote Cache 配置
+        TURBO_TOKEN = credentials('turbo-remote-cache-token')
+        TURBO_TEAM = 'puff-team'  // 可以自定义团队名
+        TURBO_TELEMETRY_DISABLED = '1'  // 禁用遥测
+
         // Docker 镜像标签：分支名-构建号-时间戳
         IMAGE_TAG = "${env.BRANCH_NAME}-${BUILD_NUMBER}-${new Date().format('yyyyMMdd-HHmmss')}"
 
@@ -106,12 +111,14 @@ pipeline {
 
                         if (cacheExists) {
                             echo "✅ 找到缓存镜像，将使用 --cache-from 加速构建"
-                            // 使用缓存构建（启用 BuildKit）
+                            // 使用缓存构建（启用 BuildKit + Turbo Remote Cache）
                             sh """
                                 DOCKER_BUILDKIT=1 docker build \
                                     --build-arg NODE_VERSION=${nodeVersion} \
                                     --build-arg APP_NAME=${appName} \
                                     --build-arg BUILD_ENV=${DEPLOY_ENV} \
+                                    --build-arg TURBO_TOKEN=${TURBO_TOKEN} \
+                                    --build-arg TURBO_TEAM=${TURBO_TEAM} \
                                     --cache-from ${imageLatest} \
                                     -t ${imageName} \
                                     -t ${imageLatest} \
@@ -120,12 +127,14 @@ pipeline {
                             """
                         } else {
                             echo "ℹ️  未找到缓存镜像，执行全新构建（首次构建正常）"
-                            // 不使用缓存构建（启用 BuildKit）
+                            // 不使用缓存构建（启用 BuildKit + Turbo Remote Cache）
                             sh """
                                 DOCKER_BUILDKIT=1 docker build \
                                     --build-arg NODE_VERSION=${nodeVersion} \
                                     --build-arg APP_NAME=${appName} \
                                     --build-arg BUILD_ENV=${DEPLOY_ENV} \
+                                    --build-arg TURBO_TOKEN=${TURBO_TOKEN} \
+                                    --build-arg TURBO_TEAM=${TURBO_TEAM} \
                                     -t ${imageName} \
                                     -t ${imageLatest} \
                                     -f ${dockerfile} \

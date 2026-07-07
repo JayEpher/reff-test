@@ -50,9 +50,13 @@ ARG BUILD_ENV=production
 ENV NODE_ENV=${BUILD_ENV}
 ENV UMI_ENV=${BUILD_ENV}
 
-# 构建应用及其所有依赖（使用 Turbo）
-# 注意：Docker 容器中 Turbo 缓存无法持久化（每次构建都是新环境）
-# 但 Turbo 仍提供依赖编排和并行构建能力
+# Turbo Remote Cache 环境变量（可选，从构建参数传入）
+ARG TURBO_TOKEN
+ARG TURBO_TEAM
+ENV TURBO_TOKEN=${TURBO_TOKEN}
+ENV TURBO_TEAM=${TURBO_TEAM}
+
+# 构建应用及其所有依赖（使用 Turbo + Remote Cache）
 RUN pnpm turbo run build --filter="@puff/${APP_NAME}..."
 
 # ================================
