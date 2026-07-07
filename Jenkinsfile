@@ -93,13 +93,18 @@ pipeline {
                         echo "镜像名称: ${imageName}"
                         echo "最新标签: ${imageLatest}"
 
-                        // 构建镜像（传统 Docker 构建）
-                        // 注意：Turbo 缓存在 Docker 容器中无法持久化
+                        // 尝试拉取之前的镜像作为缓存源
+                        sh """
+                            docker pull ${imageLatest} || true
+                        """
+
+                        // 构建镜像，使用已有镜像作为缓存
                         sh """
                             docker build \
                                 --build-arg NODE_VERSION=${nodeVersion} \
                                 --build-arg APP_NAME=${appName} \
                                 --build-arg BUILD_ENV=${DEPLOY_ENV} \
+                                --cache-from ${imageLatest} \
                                 -t ${imageName} \
                                 -t ${imageLatest} \
                                 -f ${dockerfile} \
