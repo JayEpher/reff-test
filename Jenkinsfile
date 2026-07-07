@@ -336,8 +336,8 @@ pipeline {
                 echo '🧹 清理工作...'
                 echo '=========================================='
 
-                // 检查磁盘空间
-                sh 'df -h /var/lib/docker || true'
+                // 检查磁盘空间（容器内的根分区）
+                sh 'df -h / || true'
 
                 // 删除本次构建的带版本号的镜像（保留 latest）
                 def apps = params.APP_TO_BUILD == 'all'
@@ -358,16 +358,36 @@ pipeline {
                 // 清理未使用的容器
                 sh 'docker container prune -f || true'
 
-                // 如果磁盘使用率 > 85%，清理更多
-                def diskUsage = sh(
-                    script: "df /var/lib/docker | tail -1 | awk '{print \$5}' | sed 's/%//'",
+                // 获取 Docker 系统信息（更可靠的方式）
+                def dockerDiskInfo = sh(
+                    script: "docker system df --format '{{.Type}},{{.TotalCount}},{{.Size}}' | grep Images || echo ''",
                     returnStdout: true
-                ).trim().toInteger()
+                ).trim()
 
-                if (diskUsage > 85) {
-                    echo "⚠️  磁盘使用率过高 (${diskUsage}%)，执行深度清理..."
-                    // 删除所有未使用的镜像（不包括正在运行的）
-                    sh 'docker image prune -a -f || true'
+                if (dockerDiskInfo) {
+                    echo "Docker 镜像占用: ${dockerDiskInfo}"
+                }
+
+                // 如果宿主机磁盘使用率 > 85%，执行深度清理
+                // 注意：这里通过 docker info 间接判断（不完美，但可用）
+                try {
+                    def diskCheckResult = sh(
+                        script: "df / 2>/dev/null | tail -1 | awk '{print \$5}' | sed 's/%//' || echo '0'",
+                        returnStdout: true
+                    ).trim()
+
+                    if (diskCheckResult && diskCheckResult.isInteger()) {
+                        def diskUsage = diskCheckResult.toInteger()
+                        echo "磁盘使用率: ${diskUsage}%"
+
+                        if (diskUsage > 85) {
+                            echo "⚠️  磁盘使用率过高 (${diskUsage}%)，执行深度清理..."
+                            // 删除所有未使用的镜像（不包括正在运行的）
+                            sh 'docker image prune -a -f || true'
+                        }
+                    }
+                } catch (Exception e) {
+                    echo "⚠️  磁盘检查失败，跳过深度清理: ${e.message}"
                 }
 
                 // 登出 Harbor
@@ -376,8 +396,9 @@ pipeline {
                 // 删除临时覆盖文件
                 sh 'rm -f docker-compose.override.yml || true'
 
-                // 显示清理后的磁盘空间
-                sh 'df -h /var/lib/docker || true'
+                // 显示清理后的磁盘空间和 Docker 统计
+                sh 'df -h / || true'
+                sh 'docker system df || true'
 
                 echo '🔚 Pipeline 执行结束'
             }
