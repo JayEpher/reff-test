@@ -1,79 +1,37 @@
+# 方案 B：单服务器多环境 docker-compose 配置
+# 此文件仅作为基础模板，实际部署时会被 Jenkinsfile 生成的 docker-compose.override.yml 覆盖
+
 version: '3.8'
 
 services:
   # Activities 应用
   activities:
-    build:
-      context: .
-      dockerfile: Dockerfile.universal
-      target: production-static
-      args:
-        NODE_VERSION: 20
-        APP_NAME: activities
-        BUILD_ENV: production
+    image: ${HARBOR_URL}/${HARBOR_PROJECT}/activities:latest
     container_name: puff-activities
-    ports:
-      - "3001:80"
-    environment:
-      - NODE_ENV=production
     restart: unless-stopped
     networks:
       - puff-network
 
   # Admin System 1
   admin-system-1:
-    build:
-      context: .
-      dockerfile: Dockerfile.universal
-      target: production-static
-      args:
-        NODE_VERSION: 20
-        APP_NAME: admin-system-1
-        BUILD_ENV: production
+    image: ${HARBOR_URL}/${HARBOR_PROJECT}/admin-system-1:latest
     container_name: puff-admin-1
-    ports:
-      - "3002:80"
-    environment:
-      - NODE_ENV=production
     restart: unless-stopped
     networks:
       - puff-network
 
-  # Admin System 3 (UmiJS 4 + React 18.3)
+  # Admin System 3
   admin-system-3:
-    build:
-      context: .
-      dockerfile: Dockerfile.universal
-      target: production-static
-      args:
-        NODE_VERSION: 20
-        APP_NAME: admin-system-3
-        BUILD_ENV: production
+    image: ${HARBOR_URL}/${HARBOR_PROJECT}/admin-system-3:latest
     container_name: puff-admin-3
-    ports:
-      - "3003:80"
-    environment:
-      - NODE_ENV=production
     restart: unless-stopped
     networks:
       - puff-network
 
   # DApp (Next.js)
   dapp:
-    build:
-      context: .
-      dockerfile: Dockerfile.universal
-      target: production-nextjs
-      args:
-        NODE_VERSION: 20
-        APP_NAME: dapp
-        BUILD_ENV: production
+    image: ${HARBOR_URL}/${HARBOR_PROJECT}/dapp:latest
     container_name: puff-dapp
-    ports:
-      - "3004:3000"
-    environment:
-      - NODE_ENV=production
-      - PORT=3000
     restart: unless-stopped
     networks:
       - puff-network
