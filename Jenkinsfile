@@ -106,9 +106,9 @@ pipeline {
 
                         if (cacheExists) {
                             echo "✅ 找到缓存镜像，将使用 --cache-from 加速构建"
-                            // 使用缓存构建
+                            // 使用缓存构建（启用 BuildKit）
                             sh """
-                                docker build \
+                                DOCKER_BUILDKIT=1 docker build \
                                     --build-arg NODE_VERSION=${nodeVersion} \
                                     --build-arg APP_NAME=${appName} \
                                     --build-arg BUILD_ENV=${DEPLOY_ENV} \
@@ -120,9 +120,9 @@ pipeline {
                             """
                         } else {
                             echo "ℹ️  未找到缓存镜像，执行全新构建（首次构建正常）"
-                            // 不使用缓存构建
+                            // 不使用缓存构建（启用 BuildKit）
                             sh """
-                                docker build \
+                                DOCKER_BUILDKIT=1 docker build \
                                     --build-arg NODE_VERSION=${nodeVersion} \
                                     --build-arg APP_NAME=${appName} \
                                     --build-arg BUILD_ENV=${DEPLOY_ENV} \
