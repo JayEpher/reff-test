@@ -336,14 +336,48 @@ pipeline {
                 echo '🧹 清理工作...'
                 echo '=========================================='
 
-                // 清理悬空镜像（保留最近的镜像）
+                // 检查磁盘空间
+                sh 'df -h /var/lib/docker || true'
+
+                // 删除本次构建的带版本号的镜像（保留 latest）
+                def apps = params.APP_TO_BUILD == 'all'
+                    ? ['activities', 'admin-system-1', 'admin-system-3', 'dapp']
+                    : [params.APP_TO_BUILD]
+
+                apps.each { appName ->
+                    def imageName = "${HARBOR_URL}/${HARBOR_PROJECT}/${appName}:${IMAGE_TAG}"
+                    sh """
+                        echo "清理本地镜像: ${imageName}"
+                        docker rmi ${imageName} || true
+                    """
+                }
+
+                // 清理悬空镜像（立即清理，释放空间）
                 sh 'docker image prune -f || true'
+
+                // 清理未使用的容器
+                sh 'docker container prune -f || true'
+
+                // 如果磁盘使用率 > 85%，清理更多
+                def diskUsage = sh(
+                    script: "df /var/lib/docker | tail -1 | awk '{print \$5}' | sed 's/%//'",
+                    returnStdout: true
+                ).trim().toInteger()
+
+                if (diskUsage > 85) {
+                    echo "⚠️  磁盘使用率过高 (${diskUsage}%)，执行深度清理..."
+                    // 删除所有未使用的镜像（不包括正在运行的）
+                    sh 'docker image prune -a -f || true'
+                }
 
                 // 登出 Harbor
                 sh "docker logout ${HARBOR_URL} || true"
 
                 // 删除临时覆盖文件
                 sh 'rm -f docker-compose.override.yml || true'
+
+                // 显示清理后的磁盘空间
+                sh 'df -h /var/lib/docker || true'
 
                 echo '🔚 Pipeline 执行结束'
             }
