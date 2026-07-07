@@ -66,6 +66,11 @@ pipeline {
                     echo '🔨 开始构建 Docker 镜像...'
                     echo '=========================================='
 
+                    // 登录 Harbor（用于拉取缓存镜像）
+                    sh """
+                        echo \${HARBOR_CREDENTIALS_PSW} | docker login ${HARBOR_URL} -u \${HARBOR_CREDENTIALS_USR} --password-stdin
+                    """
+
                     // 定义要构建的应用列表
                     def apps = params.APP_TO_BUILD == 'all'
                         ? ['activities', 'admin-system-1', 'admin-system-3', 'dapp']
