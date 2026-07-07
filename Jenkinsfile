@@ -94,22 +94,39 @@ pipeline {
                         echo "最新标签: ${imageLatest}"
 
                         // 尝试拉取之前的镜像作为缓存源
-                        sh """
-                            docker pull ${imageLatest} || true
-                        """
+                        def cacheExists = sh(
+                            script: "docker pull ${imageLatest}",
+                            returnStatus: true
+                        ) == 0
 
-                        // 构建镜像，使用已有镜像作为缓存
-                        sh """
-                            docker build \
-                                --build-arg NODE_VERSION=${nodeVersion} \
-                                --build-arg APP_NAME=${appName} \
-                                --build-arg BUILD_ENV=${DEPLOY_ENV} \
-                                --cache-from ${imageLatest} \
-                                -t ${imageName} \
-                                -t ${imageLatest} \
-                                -f ${dockerfile} \
-                                .
-                        """
+                        if (cacheExists) {
+                            echo "✅ 找到缓存镜像，将使用 --cache-from 加速构建"
+                            // 使用缓存构建
+                            sh """
+                                docker build \
+                                    --build-arg NODE_VERSION=${nodeVersion} \
+                                    --build-arg APP_NAME=${appName} \
+                                    --build-arg BUILD_ENV=${DEPLOY_ENV} \
+                                    --cache-from ${imageLatest} \
+                                    -t ${imageName} \
+                                    -t ${imageLatest} \
+                                    -f ${dockerfile} \
+                                    .
+                            """
+                        } else {
+                            echo "ℹ️  未找到缓存镜像，执行全新构建（首次构建正常）"
+                            // 不使用缓存构建
+                            sh """
+                                docker build \
+                                    --build-arg NODE_VERSION=${nodeVersion} \
+                                    --build-arg APP_NAME=${appName} \
+                                    --build-arg BUILD_ENV=${DEPLOY_ENV} \
+                                    -t ${imageName} \
+                                    -t ${imageLatest} \
+                                    -f ${dockerfile} \
+                                    .
+                            """
+                        }
 
                         echo "✅ ${appName} 镜像构建完成"
                     }
