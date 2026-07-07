@@ -1,0 +1,131 @@
+# ============================================================
+# Turbo Remote Cache 服务配置（使用 S3 存储）
+# ============================================================
+# 适用场景：
+# - 磁盘空间紧张，需要使用对象存储
+# - 多服务器共享缓存
+# - 需要私有化部署
+#
+# 支持的 S3 兼容存储：
+# - 阿里云 OSS
+# - 腾讯云 COS
+# - AWS S3
+# - MinIO（自建）
+#
+# 使用方法：
+# 1. 创建 .env.turbo-cache 文件（见 .env.turbo-cache.example）
+# 2. docker-compose -f docker-compose.turbo-cache.yml --env-file .env.turbo-cache up -d
+# ============================================================
+
+version: '3.8'
+
+services:
+  turborepo-cache:
+    image: ducktors/turborepo-remote-cache:latest
+    container_name: turborepo-remote-cache
+    restart: unless-stopped
+
+    ports:
+      # 只监听本地（通过 Nginx 反向代理更安全）
+      # 如果不需要外部访问，保持 127.0.0.1
+      # 如果需要其他服务器访问，改为 0.0.0.0:3002:3000
+      - '127.0.0.1:3002:3000'
+
+    environment:
+      # ================================
+      # 存储配置
+      # ================================
+      STORAGE_PROVIDER: s3
+
+      # S3 凭证（从环境变量读取）
+      S3_ACCESS_KEY: '${S3_ACCESS_KEY}'
+      S3_SECRET_KEY: '${S3_SECRET_KEY}'
+
+      # S3 区域（根据云服务商不同而不同）
+      # 阿里云: cn-beijing, cn-hangzhou, cn-shanghai 等
+      # 腾讯云: ap-beijing, ap-guangzhou, ap-shanghai 等
+      # AWS: us-east-1, us-west-2, ap-southeast-1 等
+      S3_REGION: '${S3_REGION}'
+
+      # S3 Endpoint（完整 URL）
+      # 阿里云 OSS: https://oss-cn-beijing.aliyuncs.com
+      # 腾讯云 COS: https://cos.ap-beijing.myqcloud.com
+      # AWS S3: https://s3.amazonaws.com（或留空使用默认）
+      S3_ENDPOINT: '${S3_ENDPOINT}'
+
+      # S3 Bucket 名称
+      S3_BUCKET: '${S3_BUCKET}'
+
+      # 可选：路径前缀（多项目共用一个 Bucket 时使用）
+      # 例如: puff-monorepo/ 或 project-name/
+      S3_PREFIX: '${S3_PREFIX:-}'
+
+      # 可选：强制使用路径样式（MinIO 需要设置为 true）
+      # S3_FORCE_PATH_STYLE: 'true'
+
+      # ================================
+      # 认证配置
+      # ================================
+      # Turbo 认证 Token（从环境变量读取）
+      TURBO_TOKEN: '${TURBO_TOKEN}'
+
+      # ================================
+      # 缓存策略（可选）
+      # ================================
+      # 日志级别: debug, info, warn, error
+      LOG_LEVEL: info
+
+      # 缓存过期时间（可选，不设置则永久保留）
+      # 格式: 7d (7天), 30d (30天), 90d (90天)
+      # CACHE_TTL: 30d
+
+      # 最大缓存大小（可选，不设置则无限制）
+      # 格式: 10GB, 50GB, 100GB
+      # MAX_CACHE_SIZE: 50GB
+
+    networks:
+      - puff-network
+
+    # 健康检查
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:3000/health']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+    # 资源限制（可选，防止服务占用过多资源）
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: '1.0'
+    #       memory: 512M
+    #     reservations:
+    #       cpus: '0.25'
+    #       memory: 128M
+
+networks:
+  puff-network:
+    external: true
+
+# ============================================================
+# 使用说明
+# ============================================================
+#
+# 1. 启动服务：
+#    docker-compose -f docker-compose.turbo-cache.yml --env-file .env.turbo-cache up -d
+#
+# 2. 查看日志：
+#    docker logs -f turborepo-remote-cache
+#
+# 3. 验证服务：
+#    curl http://localhost:3002/health
+#    # 应返回: {"status":"ok"}
+#
+# 4. 停止服务：
+#    docker-compose -f docker-compose.turbo-cache.yml down
+#
+# 5. 重启服务：
+#    docker-compose -f docker-compose.turbo-cache.yml restart
+#
+# ============================================================

@@ -1,3 +1,19 @@
+// ============================================================
+// Jenkinsfile for Self-hosted Turbo Remote Cache with S3
+// ============================================================
+// 此文件是使用自建 Turbo Remote Cache + S3 的 Jenkinsfile
+//
+// 与标准 Jenkinsfile 的区别：
+// - 添加 TURBO_API 环境变量，指向自建服务
+// - 其他配置保持不变
+//
+// 使用方法：
+// 1. 启动 Turbo Remote Cache 服务（docker-compose.turbo-cache.yml）
+// 2. 在 Jenkins 中添加 Credential: turbo-remote-cache-token
+// 3. 将此文件重命名为 Jenkinsfile（替换现有的）
+// 4. 提交并推送到 Git
+// ============================================================
+
 pipeline {
     agent any
 
@@ -9,16 +25,20 @@ pipeline {
         // 根据分支名确定环境
         DEPLOY_ENV = "${env.BRANCH_NAME == 'main' ? 'production' : (env.BRANCH_NAME == 'test' ? 'test' : 'development')}"
 
-        // Turbo Remote Cache 配置（使用 Vercel）
-        TURBO_TOKEN = credentials('turbo-remote-cache-token')
-        TURBO_TEAM = 'puff-team'
-        TURBO_TELEMETRY_DISABLED = '1'
-
         // Docker 镜像标签：分支名-构建号-时间戳
         IMAGE_TAG = "${env.BRANCH_NAME}-${BUILD_NUMBER}-${new Date().format('yyyyMMdd-HHmmss')}"
 
         // Harbor 凭证 (需要在 Jenkins 中配置 harbor-credentials)
         HARBOR_CREDENTIALS = credentials('harbor-credentials')
+
+        // ================================
+        // Turbo Remote Cache 配置（自建服务 + S3）
+        // ================================
+        // 关键区别：添加 TURBO_API 指向自建服务
+        TURBO_API = 'http://107.173.87.162:3002'
+        TURBO_TOKEN = credentials('turbo-remote-cache-token')
+        TURBO_TEAM = 'puff-team'
+        TURBO_TELEMETRY_DISABLED = '1'
     }
 
     parameters {
@@ -46,6 +66,7 @@ pipeline {
                     echo "构建应用: ${params.APP_TO_BUILD}"
                     echo "镜像标签: ${IMAGE_TAG}"
                     echo "Harbor: ${HARBOR_URL}/${HARBOR_PROJECT}"
+                    echo "Turbo Cache: ${TURBO_API}"
                     echo '=========================================='
                 }
             }
@@ -151,6 +172,10 @@ pipeline {
                 }
             }
         }
+
+        // ================================
+        // 以下 stages 与标准 Jenkinsfile 相同
+        // ================================
 
         stage('Push to Harbor') {
             steps {
@@ -378,7 +403,6 @@ pipeline {
                 }
 
                 // 如果宿主机磁盘使用率 > 85%，执行深度清理
-                // 注意：这里通过 docker info 间接判断（不完美，但可用）
                 try {
                     def diskCheckResult = sh(
                         script: "df / 2>/dev/null | tail -1 | awk '{print \$5}' | sed 's/%//' || echo '0'",
@@ -414,3 +438,24 @@ pipeline {
         }
     }
 }
+
+// ============================================================
+// 使用说明
+// ============================================================
+//
+// 1. 启动 Turbo Remote Cache 服务：
+//    docker-compose -f docker-compose.turbo-cache.yml --env-file .env.turbo-cache up -d
+//
+// 2. 在 Jenkins 中添加 Credential:
+//    - ID: turbo-remote-cache-token
+//    - Secret: <.env.turbo-cache 中的 TURBO_TOKEN>
+//
+// 3. 将此文件重命名为 Jenkinsfile（替换现有的）
+//
+// 4. 提交并推送到 Git
+//
+// 5. 验证构建日志中显示：
+//    • Remote caching enabled
+//    @puff/ui:build: cache hit, replaying logs [REMOTE]
+//
+// ============================================================
