@@ -36,7 +36,7 @@ export const HalloweenActivity: React.FC = () => {
   return (
     <div className="halloween-container">
       <h1 className="halloween-title">🎃 Halloween Activity</h1>
-      <p className="halloween-text">Welcome to the spooky Halloween event!</p>
+      <p className="halloween-text">Welcome to the spooky Halloween event~~~~!</p>
 
       <div className="score-board">
         <p>Score: {score}</p>
