@@ -22,6 +22,12 @@ pipeline {
 
         // Harbor 凭证
         HARBOR_CREDENTIALS = credentials('harbor-credentials')
+
+        // 版本记录文件路径
+        VERSION_FILE = "/var/jenkins_home/deploy-versions/${DEPLOY_ENV}.json"
+
+        // 保留的历史版本数量
+        KEEP_VERSIONS = 5
     }
 
     parameters {
@@ -40,9 +46,54 @@ pipeline {
             defaultValue: false,
             description: '并行构建（需要服务器资源充足）'
         )
+        booleanParam(
+            name: 'IS_ROLLBACK',
+            defaultValue: false,
+            description: '🔄 回滚模式：回滚到指定版本'
+        )
+        string(
+            name: 'ROLLBACK_VERSION',
+            defaultValue: '',
+            description: '回滚的版本号（格式：main-123-20260712-123456），留空则回滚到上一个版本'
+        )
+        booleanParam(
+            name: 'BLUE_GREEN_DEPLOY',
+            defaultValue: false,
+            description: '🔵🟢 蓝绿部署：保留旧版本容器，健康检查通过后再切换'
+        )
     }
 
     stages {
+        stage('Rollback Mode Check') {
+            when {
+                expression { params.IS_ROLLBACK == true }
+            }
+            steps {
+                script {
+                    echo '=========================================='
+                    echo '🔄 回滚模式'
+                    echo '=========================================='
+
+                    // 确定回滚版本
+                    def rollbackVersion = params.ROLLBACK_VERSION?.trim()
+                    if (!rollbackVersion) {
+                        // 获取上一个版本
+                        rollbackVersion = getPreviousVersion()
+                        if (!rollbackVersion) {
+                            error '❌ 未找到可回滚的版本'
+                        }
+                        echo "自动选择上一个版本: ${rollbackVersion}"
+                    } else {
+                        echo "手动指定版本: ${rollbackVersion}"
+                    }
+
+                    env.ROLLBACK_TO_VERSION = rollbackVersion
+                    echo "将回滚到版本: ${env.ROLLBACK_TO_VERSION}"
+                    echo '=========================================='
+                }
+            }
+        }
+
         stage('Environment Info') {
             steps {
                 script {
@@ -84,6 +135,9 @@ pipeline {
         }
 
         stage('Build Docker Images') {
+            when {
+                expression { params.IS_ROLLBACK == false }
+            }
             steps {
                 script {
                     echo '=========================================='
@@ -127,6 +181,9 @@ pipeline {
         }
 
         stage('Push to Harbor') {
+            when {
+                expression { params.IS_ROLLBACK == false }
+            }
             steps {
                 script {
                     echo '=========================================='
@@ -170,11 +227,15 @@ pipeline {
             steps {
                 script {
                     echo '=========================================='
-                    echo "🚀 部署到 ${DEPLOY_ENV} 环境..."
+                    if (params.IS_ROLLBACK) {
+                        echo "🔄 回滚到版本: ${env.ROLLBACK_TO_VERSION}"
+                    } else {
+                        echo "🚀 部署到 ${DEPLOY_ENV} 环境..."
+                    }
                     echo '=========================================='
 
                     // 生产环境需要人工确认
-                    if (env.BRANCH_NAME == 'main') {
+                    if (env.BRANCH_NAME == 'main' && !params.IS_ROLLBACK) {
                         input message: '⚠️ 确认部署到生产环境？', ok: '确认部署'
                     }
 
@@ -192,20 +253,33 @@ pipeline {
                         'dapp': portBase + 4
                     ]
 
+                    // 确定使用的镜像标签
+                    def deployTag = params.IS_ROLLBACK ? env.ROLLBACK_TO_VERSION : IMAGE_TAG
+
+                    // 蓝绿部署：先备份当前版本信息
+                    if (params.BLUE_GREEN_DEPLOY && !params.IS_ROLLBACK) {
+                        echo '🔵🟢 蓝绿部署模式：保存当前版本...'
+                        saveCurrentVersion(apps)
+                    }
+
                     // 生成 docker compose 覆盖文件
                     def composeOverride = "version: '3.8'\nservices:\n"
 
                     apps.each { appName ->
-                        def imageName = "${HARBOR_URL}/${HARBOR_PROJECT}/${appName}:${IMAGE_TAG}"
+                        def imageName = "${HARBOR_URL}/${HARBOR_PROJECT}/${appName}:${deployTag}"
                         def hostPort = portMap[appName]
                         def containerPort = (appName == 'dapp') ? 3000 : 80
+
+                        // 蓝绿部署：使用临时容器名和端口
+                        def containerSuffix = params.BLUE_GREEN_DEPLOY && !params.IS_ROLLBACK ? '-new' : ''
+                        def tempPort = params.BLUE_GREEN_DEPLOY && !params.IS_ROLLBACK ? hostPort + 100 : hostPort
 
                         composeOverride += """
   ${appName}:
     image: ${imageName}
-    container_name: puff-${appName}-${DEPLOY_ENV}
+    container_name: puff-${appName}-${DEPLOY_ENV}${containerSuffix}
     ports:
-      - "${hostPort}:${containerPort}"
+      - "${tempPort}:${containerPort}"
     environment:
       - NODE_ENV=${DEPLOY_ENV}
 """
@@ -238,6 +312,11 @@ pipeline {
 
                     // 显示运行状态
                     sh 'docker ps | grep puff'
+
+                    // 保存部署版本信息（非回滚模式）
+                    if (!params.IS_ROLLBACK && !params.BLUE_GREEN_DEPLOY) {
+                        saveDeploymentVersion(apps, deployTag)
+                    }
                 }
             }
         }
@@ -260,19 +339,128 @@ pipeline {
                         ? ['activities', 'admin-system-1', 'admin-system-3', 'dapp']
                         : [params.APP_TO_BUILD]
 
+                    def portBase = PORT_BASE.toInteger()
+                    def portMap = [
+                        'activities': portBase + 1,
+                        'admin-system-1': portBase + 2,
+                        'admin-system-3': portBase + 3,
+                        'dapp': portBase + 4
+                    ]
+
+                    def healthCheckFailed = false
+                    def failedApps = []
+
                     apps.each { appName ->
-                        def containerName = "puff-${appName}-${DEPLOY_ENV}"
+                        def containerSuffix = params.BLUE_GREEN_DEPLOY && !params.IS_ROLLBACK ? '-new' : ''
+                        def containerName = "puff-${appName}-${DEPLOY_ENV}${containerSuffix}"
+                        def checkPort = params.BLUE_GREEN_DEPLOY && !params.IS_ROLLBACK ? portMap[appName] + 100 : portMap[appName]
+
+                        // 1. 检查容器状态
                         def status = sh(
                             script: "docker inspect -f '{{.State.Status}}' ${containerName} 2>/dev/null || echo 'not found'",
                             returnStdout: true
                         ).trim()
 
                         if (status == 'running') {
-                            echo "✅ ${appName}: 运行中"
+                            echo "✅ ${appName}: 容器运行中"
+
+                            // 2. HTTP 健康检查
+                            def httpHealthOk = sh(
+                                script: """
+                                    for i in {1..30}; do
+                                        if curl -f -s -o /dev/null -w '%{http_code}' http://localhost:${checkPort}/ | grep -q '200\\|301\\|302\\|304'; then
+                                            echo 'ok'
+                                            exit 0
+                                        fi
+                                        sleep 2
+                                    done
+                                    echo 'failed'
+                                    exit 1
+                                """,
+                                returnStatus: true
+                            ) == 0
+
+                            if (httpHealthOk) {
+                                echo "✅ ${appName}: HTTP 健康检查通过 (端口 ${checkPort})"
+                            } else {
+                                echo "❌ ${appName}: HTTP 健康检查失败 (端口 ${checkPort})"
+                                sh "docker logs --tail 50 ${containerName} || true"
+                                healthCheckFailed = true
+                                failedApps << appName
+                            }
                         } else {
-                            echo "❌ ${appName}: 状态异常 (${status})"
+                            echo "❌ ${appName}: 容器状态异常 (${status})"
                             sh "docker logs --tail 50 ${containerName} || true"
+                            healthCheckFailed = true
+                            failedApps << appName
                         }
+                    }
+
+                    // 健康检查失败处理
+                    if (healthCheckFailed) {
+                        echo "=========================================="
+                        echo "❌ 健康检查失败的应用: ${failedApps.join(', ')}"
+                        echo "=========================================="
+
+                        if (!params.IS_ROLLBACK && params.BLUE_GREEN_DEPLOY) {
+                            echo "🔄 蓝绿部署失败，保留旧版本容器"
+                            // 清理新版本容器
+                            failedApps.each { appName ->
+                                sh "docker rm -f puff-${appName}-${DEPLOY_ENV}-new || true"
+                            }
+                        } else if (!params.IS_ROLLBACK) {
+                            echo "⚠️ 尝试自动回滚到上一个版本..."
+                            def previousVersion = getPreviousVersion()
+                            if (previousVersion) {
+                                echo "找到上一个版本: ${previousVersion}"
+                                echo "触发自动回滚..."
+                                // 标记需要回滚
+                                env.AUTO_ROLLBACK_NEEDED = 'true'
+                                env.AUTO_ROLLBACK_VERSION = previousVersion
+                            } else {
+                                echo "❌ 未找到可回滚的版本"
+                            }
+                        }
+
+                        error "健康检查失败"
+                    }
+
+                    // 蓝绿部署：切换流量
+                    if (params.BLUE_GREEN_DEPLOY && !params.IS_ROLLBACK && !healthCheckFailed) {
+                        echo '=========================================='
+                        echo '🔵🟢 健康检查通过，切换流量到新版本...'
+                        echo '=========================================='
+
+                        apps.each { appName ->
+                            def oldContainer = "puff-${appName}-${DEPLOY_ENV}"
+                            def newContainer = "puff-${appName}-${DEPLOY_ENV}-new"
+
+                            // 停止旧容器
+                            sh "docker stop ${oldContainer} || true"
+                            sh "docker rm ${oldContainer} || true"
+
+                            // 重命名新容器并重新映射端口
+                            sh "docker stop ${newContainer}"
+                            sh "docker rename ${newContainer} ${oldContainer}"
+
+                            // 使用正确的端口重启容器
+                            def hostPort = portMap[appName]
+                            def containerPort = (appName == 'dapp') ? 3000 : 80
+                            def imageName = "${HARBOR_URL}/${HARBOR_PROJECT}/${appName}:${IMAGE_TAG}"
+
+                            sh """
+                                docker run -d \\
+                                    --name ${oldContainer} \\
+                                    -p ${hostPort}:${containerPort} \\
+                                    -e NODE_ENV=${DEPLOY_ENV} \\
+                                    ${imageName}
+                            """
+
+                            echo "✅ ${appName}: 已切换到新版本"
+                        }
+
+                        // 保存版本信息
+                        saveDeploymentVersion(apps, IMAGE_TAG)
                     }
 
                     echo '=========================================='
@@ -340,13 +528,19 @@ pipeline {
                     ? ['activities', 'admin-system-1', 'admin-system-3', 'dapp']
                     : [params.APP_TO_BUILD]
 
-                apps.each { appName ->
-                    def imageName = "${HARBOR_URL}/${HARBOR_PROJECT}/${appName}:${IMAGE_TAG}"
-                    sh """
-                        echo "清理本地镜像: ${imageName}"
-                        docker rmi ${imageName} || true
-                    """
+                // 只清理当前构建的镜像，保留历史版本用于回滚
+                if (!params.IS_ROLLBACK) {
+                    apps.each { appName ->
+                        def imageName = "${HARBOR_URL}/${HARBOR_PROJECT}/${appName}:${IMAGE_TAG}"
+                        sh """
+                            echo "清理本地构建镜像: ${imageName}"
+                            docker rmi ${imageName} || true
+                        """
+                    }
                 }
+
+                // 清理旧版本镜像（保留最近 KEEP_VERSIONS 个版本）
+                cleanupOldImages(apps)
 
                 sh 'docker image prune -f || true'
                 sh 'docker container prune -f || true'
@@ -451,4 +645,177 @@ def buildApp(String appName) {
     }
 
     echo "✅ ${appName} 镜像构建完成"
+}
+
+// ============================================
+// 版本管理函数
+// ============================================
+
+// 保存部署版本信息
+def saveDeploymentVersion(List apps, String version) {
+    echo "💾 保存部署版本信息: ${version}"
+
+    // 确保目录存在
+    sh "mkdir -p /var/jenkins_home/deploy-versions"
+
+    // 读取现有版本历史
+    def versionData = [:]
+    def versionFile = "/var/jenkins_home/deploy-versions/${DEPLOY_ENV}.json"
+
+    if (fileExists(versionFile)) {
+        def existingData = readFile(versionFile).trim()
+        if (existingData) {
+            try {
+                versionData = readJSON(text: existingData)
+            } catch (Exception e) {
+                echo "⚠️ 无法解析现有版本文件，创建新文件"
+                versionData = [:]
+            }
+        }
+    }
+
+    // 初始化结构
+    if (!versionData.versions) {
+        versionData.versions = []
+    }
+
+    // 添加新版本记录
+    def newVersion = [
+        version: version,
+        timestamp: new Date().format('yyyy-MM-dd HH:mm:ss'),
+        buildNumber: BUILD_NUMBER,
+        apps: apps,
+        deployer: env.BUILD_USER ?: 'jenkins'
+    ]
+
+    versionData.versions.add(0, newVersion)  // 添加到开头
+
+    // 只保留最近的 KEEP_VERSIONS 个版本
+    if (versionData.versions.size() > KEEP_VERSIONS.toInteger()) {
+        versionData.versions = versionData.versions.take(KEEP_VERSIONS.toInteger())
+    }
+
+    // 更新当前版本
+    versionData.current = version
+
+    // 写入文件
+    writeJSON file: versionFile, json: versionData, pretty: 4
+
+    echo "✅ 版本信息已保存"
+    echo "当前版本: ${version}"
+    echo "历史版本数: ${versionData.versions.size()}"
+}
+
+// 获取上一个部署版本
+def getPreviousVersion() {
+    def versionFile = "/var/jenkins_home/deploy-versions/${DEPLOY_ENV}.json"
+
+    if (!fileExists(versionFile)) {
+        echo "⚠️ 版本文件不存在"
+        return null
+    }
+
+    def versionData
+    try {
+        versionData = readJSON file: versionFile
+    } catch (Exception e) {
+        echo "⚠️ 无法读取版本文件: ${e.message}"
+        return null
+    }
+
+    if (!versionData.versions || versionData.versions.size() < 2) {
+        echo "⚠️ 没有历史版本"
+        return null
+    }
+
+    // 返回第二个版本（第一个是当前版本）
+    def previousVersion = versionData.versions[1].version
+    echo "找到上一个版本: ${previousVersion}"
+    return previousVersion
+}
+
+// 保存当前版本（蓝绿部署用）
+def saveCurrentVersion(List apps) {
+    echo "💾 保存当前版本信息..."
+
+    apps.each { appName ->
+        def containerName = "puff-${appName}-${DEPLOY_ENV}"
+
+        // 获取当前运行的镜像
+        def currentImage = sh(
+            script: "docker inspect -f '{{.Config.Image}}' ${containerName} 2>/dev/null || echo ''",
+            returnStdout: true
+        ).trim()
+
+        if (currentImage) {
+            echo "当前 ${appName} 镜像: ${currentImage}"
+        } else {
+            echo "⚠️ ${appName} 容器不存在或未运行"
+        }
+    }
+}
+
+// 清理旧版本镜像
+def cleanupOldImages(List apps) {
+    echo "🧹 清理旧版本镜像（保留最近 ${KEEP_VERSIONS} 个）"
+
+    def versionFile = "/var/jenkins_home/deploy-versions/${DEPLOY_ENV}.json"
+
+    if (!fileExists(versionFile)) {
+        echo "⚠️ 版本文件不存在，跳过清理"
+        return
+    }
+
+    def versionData
+    try {
+        versionData = readJSON file: versionFile
+    } catch (Exception e) {
+        echo "⚠️ 无法读取版本文件: ${e.message}"
+        return
+    }
+
+    if (!versionData.versions || versionData.versions.size() <= KEEP_VERSIONS.toInteger()) {
+        echo "✅ 无需清理，版本数: ${versionData.versions?.size() ?: 0}"
+        return
+    }
+
+    // 获取要保留的版本列表
+    def keepVersions = versionData.versions.take(KEEP_VERSIONS.toInteger()).collect { it.version }
+    echo "保留版本: ${keepVersions.join(', ')}"
+
+    // 获取 Harbor 上的镜像列表并清理
+    apps.each { appName ->
+        try {
+            // 这里可以添加调用 Harbor API 清理镜像的逻辑
+            // 暂时只清理本地镜像
+            sh """
+                # 获取本地该应用的所有镜像
+                docker images ${HARBOR_URL}/${HARBOR_PROJECT}/${appName} --format '{{.Tag}}' | while read tag; do
+                    # 跳过 latest 标签
+                    if [ "\$tag" = "${env.BRANCH_NAME}-latest" ]; then
+                        continue
+                    fi
+
+                    # 检查是否在保留列表中
+                    keep=false
+                    for version in ${keepVersions.join(' ')}; do
+                        if [ "\$tag" = "\$version" ]; then
+                            keep=true
+                            break
+                        fi
+                    done
+
+                    # 不在保留列表中则删除
+                    if [ "\$keep" = false ]; then
+                        echo "删除旧镜像: ${appName}:\$tag"
+                        docker rmi ${HARBOR_URL}/${HARBOR_PROJECT}/${appName}:\$tag || true
+                    fi
+                done
+            """
+        } catch (Exception e) {
+            echo "⚠️ 清理 ${appName} 旧镜像失败: ${e.message}"
+        }
+    }
+
+    echo "✅ 旧版本镜像清理完成"
 }
